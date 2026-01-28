@@ -132,21 +132,6 @@
   margin-top: 10px;
 }
 
-.btn {
-  flex: 1;
-  height: 46px;
-  border-radius: 10px;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  border: none;
-  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 /* primary */
 .btn-primary {
   background: #009b63;
