@@ -1,51 +1,36 @@
 <!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8" />
-    <title>Guily</title>
-    <link rel="stylesheet" href="css/main.css" />
-</head>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="fragments/base">
+
 <body>
 
-<header class="header">
-    <div class="header-inner">
-        <div class="logo">Guily</div>
+<div layout:fragment="content">
+    <section class="hero">
+        <div class="hero-inner">
+            <h1>
+                건강한 일상을 위한
+                <span>스마트한 관리</span>
+            </h1>
+            <p>Guily와 함께 식단과 운동을 체계적으로 관리하세요.</p>
 
-        <nav class="nav">
-            <a href="#">식단</a>
-            <a href="#">운동</a>
-            <a href="#">게시판</a>
-        </nav>
-
-        <button class="login-btn">로그인</button>
-    </div>
-</header>
-
-<section class="hero">
-    <div class="hero-inner">
-        <h1>
-            건강한 일상을 위한
-            <span>스마트한 관리</span>
-        </h1>
-        <p>
-            Guily와 함께 식단과 운동을 체계적으로 관리하세요.
-        </p>
-
-        <div class="hero-buttons">
-            <button class="btn primary">시작하기 →</button>
-            <button class="btn outline">더 알아보기</button>
+            <div class="hero-buttons">
+                <button class="btn primary">시작하기</button>
+                <button class="btn outline">더 알아보기</button>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section class="features">
-    <div class="features-inner">
-        <div class="card">식단 관리</div>
-        <div class="card">운동 관리</div>
-        <div class="card">진행 상황 추적</div>
-        <div class="card">커뮤니티</div>
-    </div>
-</section>
+    <section class="features">
+        <div class="features-inner">
+            <div class="card">식단 관리</div>
+            <div class="card">운동 관리</div>
+            <div class="card">진행 상황 추적</div>
+            <div class="card">커뮤니티</div>
+        </div>
+    </section>
+</div>
 
 </body>
 </html>

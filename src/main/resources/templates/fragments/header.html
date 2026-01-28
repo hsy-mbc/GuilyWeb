@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org">
 <body>
+
+<header th:fragment="header">
+    <div class="header-inner">
+        <div class="logo">Guily</div>
+
+        <nav class="nav">
+            <a th:href="@{/diet}">식단</a>
+            <a th:href="@{/exercise}">운동</a>
+            <a th:href="@{/board}">게시판</a>
+        </nav>
+
+        <a class="login-btn" th:href="@{/login}">로그인</a>
+    </div>
+</header>
 
 </body>
 </html>

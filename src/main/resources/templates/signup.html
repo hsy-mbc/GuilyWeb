@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Signup | Guily</title>
+    <link rel="stylesheet" href="/css/common.css" />
+    <link rel="stylesheet" href="/css/auth.css" />
+</head>
+<body>
+
+<div class="auth-wrapper">
+    <div class="auth-card">
+
+        <!-- header -->
+        <header class="auth-header">
+            <h1 class="auth-title">Guily</h1>
+            <p class="auth-subtitle">회원가입</p>
+        </header>
+
+        <!-- body -->
+        <main class="auth-body">
+            <form class="auth-form" action="/signup" method="post">
+
+                <!-- ID -->
+                <div class="form-group">
+                    <label class="form-label">ID <span class="required">*</span></label>
+                    <div class="form-inline">
+                        <input type="text" name="userId" class="form-input" placeholder="ID 입력" />
+                        <button type="button" id="btn-check-id" class="btn btn-dark">중복체크</button>
+                    </div>
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                    <label class="form-label">Password <span class="required">*</span></label>
+                    <input type="password" name="password" class="form-input" placeholder="비밀번호 입력" />
+                </div>
+
+                <!-- Password Check -->
+                <div class="form-group">
+                    <label class="form-label">Password Check <span class="required">*</span></label>
+                    <input type="password" name="passwordConfirm" class="form-input" placeholder="비밀번호 확인" />
+                </div>
+
+                <!-- Name -->
+                <div class="form-group">
+                    <label class="form-label">Name <span class="required">*</span></label>
+                    <input type="text" name="name" class="form-input" placeholder="이름 입력" />
+                </div>
+
+                <!-- Gender -->
+                <div class="form-group">
+                    <label class="form-label">Gender <span class="required">*</span></label>
+                    <div class="form-radio">
+                        <label><input type="radio" name="gender" value="MALE" /> 남성</label>
+                        <label><input type="radio" name="gender" value="FEMALE" /> 여성</label>
+                    </div>
+                </div>
+
+                <!-- Birth -->
+                <div class="form-group">
+                    <label class="form-label">생년월일 <span class="required">*</span></label>
+                    <input type="date" name="birthdate" class="form-input" />
+                </div>
+
+                <!-- Height -->
+                <div class="form-group">
+                    <label class="form-label">키 (선택)</label>
+                    <div class="form-unit">
+                        <input type="number" name="height" class="form-input" placeholder="키 입력" />
+                        <span class="unit-text">cm</span>
+                    </div>
+                </div>
+
+                <!-- Weight -->
+                <div class="form-group">
+                    <label class="form-label">몸무게 (선택)</label>
+                    <div class="form-unit">
+                        <input type="number" name="weight" class="form-input" placeholder="몸무게 입력" />
+                        <span class="unit-text">kg</span>
+                    </div>
+                </div>
+
+                <!-- buttons -->
+                <div class="form-actions">
+                    <button type="button" class="btn btn-outline" onclick="location.href='/login'">취소</button>
+                    <button type="submit" class="btn btn-primary">가입하기</button>
+                </div>
+
+            </form>
+        </main>
+
+        <!-- footer -->
+        <footer class="auth-footer">
+            © 2026 Be Healthy - Guily
+        </footer>
+
+    </div>
+</div>
+
+<script th:src="@{/js/signup.js}"></script>
+</body>
+</html>

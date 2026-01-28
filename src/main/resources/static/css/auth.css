@@ -1,0 +1,194 @@
+/* =========================
+   AUTH COMMON LAYOUT
+========================= */
+.auth-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f4f6f8;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* =========================
+   HEADER
+========================= */
+.auth-header {
+  background: #009b63;
+  padding: 28px 20px;
+  text-align: center;
+}
+
+.auth-title {
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.auth-subtitle {
+  margin-top: 6px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* =========================
+   BODY
+========================= */
+.auth-body {
+  padding: 28px 24px 32px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* =========================
+   FORM ELEMENTS
+========================= */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #333333;
+}
+
+.required {
+  color: #e53935;
+  margin-left: 2px;
+}
+
+.form-input {
+  width: 100%;
+  height: 44px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1px solid #dcdfe3;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-input::placeholder {
+  color: #b0b6bd;
+}
+
+.form-input:focus {
+  border-color: #009b63;
+  box-shadow: 0 0 0 2px rgba(0, 155, 99, 0.15);
+}
+
+/* =========================
+   INLINE / UNIT / RADIO
+========================= */
+.form-inline {
+  display: flex;
+  gap: 10px;
+}
+
+.form-unit {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.unit-text {
+  font-size: 14px;
+  color: #555555;
+}
+
+.form-radio {
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+  color: #444444;
+}
+
+.form-radio input {
+  margin-right: 6px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.btn {
+  flex: 1;
+  height: 46px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* primary */
+.btn-primary {
+  background: #009b63;
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background: #008452;
+}
+
+/* outline */
+.btn-outline {
+  background: #ffffff;
+  color: #009b63;
+  border: 2px solid #009b63;
+}
+
+.btn-outline:hover {
+  background: #009b63;
+  color: #ffffff;
+}
+
+/* dark (중복체크 버튼) */
+.btn-dark {
+  background: #4b5563;
+  color: #ffffff;
+  padding: 0 16px;
+  flex: none;
+  height: 44px;
+}
+
+.btn-dark:hover {
+  background: #374151;
+}
+
+/* =========================
+   FOOTER
+========================= */
+.auth-footer {
+  text-align: center;
+  padding: 16px;
+  font-size: 13px;
+  color: #777777;
+  border-top: 1px solid #eeeeee;
+}
