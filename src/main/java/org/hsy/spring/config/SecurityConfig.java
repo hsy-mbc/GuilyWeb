@@ -27,52 +27,32 @@ public class SecurityConfig {
 
         boolean isProd = Arrays.asList(env.getActiveProfiles()).contains("prod");
 
-        if(!isProd) {
-            http
-                    .csrf(csrf -> csrf.disable())
-                    .authorizeHttpRequests(auth -> auth
-                            .requestMatchers("/login", "/signup", "/index", "/", "/api/auth/**", "/css/**", "/js/**", "/images/**","/api/post").permitAll()
-                            .anyRequest().authenticated()
-                    )
-                    .formLogin(login -> login
-                            .loginPage("/login")
-                            .loginProcessingUrl("/login")
-                            .usernameParameter("userId")
-                            .passwordParameter("password")
-                            .defaultSuccessUrl("/index", true)
-                            .failureUrl("/login?error=true")
-                            .permitAll()
-                    )
-
-                    .logout(logout -> logout
-                            .logoutUrl("/logout")
-                            .logoutSuccessUrl("/login?logout=true")
-                    );
-
+        if (!isProd) {
+            http.csrf(csrf -> csrf.disable());
         }
-        else{
-            http
-                    .authorizeHttpRequests(auth -> auth
-                            .requestMatchers("/login", "/signup", "/index", "/", "/api/auth/**", "/css/**", "/js/**", "/images/**","/api/post").permitAll()
-                            .anyRequest().authenticated()
-                    )
 
-                    .formLogin(login -> login
-                            .loginPage("/login")
-                            .loginProcessingUrl("/login")
-                            .usernameParameter("userId")
-                            .passwordParameter("password")
-                            .defaultSuccessUrl("/index", true)
-                            .failureUrl("/login?error=true")
-                            .permitAll()
-                    )
+        http
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/login", "/signup", "/index", "/", "/board/**", "/api/board/**", "/api/auth/**", "/css/**", "/js/**", "/images/**", "/api/post").permitAll()
+                        .anyRequest().authenticated()
+                )
+                .formLogin(login -> login
+                        .loginPage("/login")
+                        .loginProcessingUrl("/login")
+                        .usernameParameter("userId")
+                        .passwordParameter("password")
+                        .defaultSuccessUrl("/index", true)
+                        .failureUrl("/login?error=true")
+                        .permitAll()
+                )
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/login?logout=true")
+                        // CSRF 활성화 시 로그아웃을 POST로 처리해야 하므로 아래 설정 확인 필요
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID")
+                );
 
-                    .logout(logout -> logout
-                            .logoutUrl("/logout")
-                            .logoutSuccessUrl("/login?logout=true")
-                    );
-
-        }
         return http.build();
     }
 

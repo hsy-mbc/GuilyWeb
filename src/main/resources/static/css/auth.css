@@ -1,179 +1,220 @@
-/* =========================
-   AUTH COMMON LAYOUT
-========================= */
-.auth-wrapper {
-  min-height: 100vh;
+/* 기본 설정 */
+* {
+  box-sizing: border-box;
+  font-family: 'Pretendard', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
   display: flex;
-  align-items: center;
   justify-content: center;
-  background: #f4f6f8;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* 카드 컨테이너 */
+.auth-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
 }
 
 .auth-card {
   width: 100%;
-  max-width: 420px;
+  max-width: 450px; /* 로그인/회원가입 공통 적정 너비 */
   background: #ffffff;
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
-/* =========================
-   HEADER
-========================= */
+/* 헤더 (초록색 배경 영역) */
 .auth-header {
-  background: #009b63;
-  padding: 28px 20px;
+  background-color: #009b63;
+  padding: 30px 20px;
   text-align: center;
+  color: #ffffff;
 }
 
 .auth-title {
-  color: #ffffff;
-  font-size: 28px;
-  font-weight: 700;
   margin: 0;
+  font-size: 32px;
+  font-weight: 800;
+}
+
+.auth-title a {
+  color: #ffffff;
+  text-decoration: none;
 }
 
 .auth-subtitle {
-  margin-top: 6px;
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.85);
+  margin-top: 8px;
+  font-size: 15px;
+  opacity: 0.9;
 }
 
-/* =========================
-   BODY
-========================= */
+/* 폼 본문 */
 .auth-body {
-  padding: 28px 24px 32px;
+  padding: 30px 25px;
 }
 
 .auth-form {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 20px;
 }
 
-/* =========================
-   FORM ELEMENTS
-========================= */
+/* 입력 그룹 */
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 8px;
 }
 
 .form-label {
-  font-size: 13px;
-  font-weight: 600;
-  color: #333333;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #333;
 }
 
 .required {
-  color: #e53935;
+  color: #ef4444;
   margin-left: 2px;
 }
 
+/* 인풋창 스타일 */
 .form-input {
   width: 100%;
-  height: 44px;
-  padding: 0 14px;
-  border-radius: 10px;
-  border: 1px solid #dcdfe3;
-  font-size: 14px;
+  height: 48px;
+  padding: 0 15px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 15px;
+  color: #333;
   outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-.form-input::placeholder {
-  color: #b0b6bd;
+  transition: border-color 0.2s;
 }
 
 .form-input:focus {
   border-color: #009b63;
-  box-shadow: 0 0 0 2px rgba(0, 155, 99, 0.15);
 }
 
-/* =========================
-   INLINE / UNIT / RADIO
-========================= */
+.form-input::placeholder {
+  color: #cbd5e1;
+}
+
+/* 중복체크용 가로 배치 */
 .form-inline {
   display: flex;
   gap: 10px;
 }
 
-.form-unit {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.form-inline .form-input {
+  flex: 1;
 }
 
-.unit-text {
-  font-size: 14px;
-  color: #555555;
-}
-
+/* 성별 라디오 버튼 */
 .form-radio {
   display: flex;
   gap: 20px;
+  padding: 5px 0;
+}
+
+.form-radio label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+/* 키/몸무게 단위 표시 */
+.form-unit {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.unit-text {
+  position: absolute;
+  right: 15px;
+  color: #64748b;
   font-size: 14px;
-  color: #444444;
 }
 
-.form-radio input {
-  margin-right: 6px;
-}
-
-/* =========================
-   BUTTONS
-========================= */
+/* 버튼 섹션 */
 .form-actions {
   display: flex;
   gap: 12px;
   margin-top: 10px;
 }
 
-/* primary */
+.btn {
+  flex: 1;
+  height: 50px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.2s;
+  border: none;
+}
+
+/* 가입하기/로그인 (Solid Green) */
 .btn-primary {
-  background: #009b63;
-  color: #ffffff;
+  background-color: #009b63;
+  color: #ffffff !important;
 }
 
 .btn-primary:hover {
-  background: #008452;
+  background-color: #008452;
 }
 
-/* outline */
+/* 취소/Signup (Outline) */
 .btn-outline {
-  background: #ffffff;
-  color: #009b63;
+  background-color: #ffffff;
+  color: #009b63 !important;
   border: 2px solid #009b63;
 }
 
 .btn-outline:hover {
-  background: #009b63;
-  color: #ffffff;
+  background-color: #f0fff4;
 }
 
-/* dark (중복체크 버튼) */
+/* 중복체크 버튼 (Dark Gray) */
 .btn-dark {
-  background: #4b5563;
+  background-color: #475569;
   color: #ffffff;
-  padding: 0 16px;
-  flex: none;
-  height: 44px;
+  padding: 0 20px;
+  height: 48px;
+  border-radius: 12px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
 }
 
 .btn-dark:hover {
-  background: #374151;
+  background-color: #334155;
 }
 
-/* =========================
-   FOOTER
-========================= */
+/* 푸터 */
 .auth-footer {
   text-align: center;
-  padding: 16px;
+  padding: 20px;
+  border-top: 1px solid #f1f5f9;
   font-size: 13px;
-  color: #777777;
-  border-top: 1px solid #eeeeee;
+  color: #94a3b8;
+}
+
+.form-msg {
+  font-size: 12px;
+  margin-top: 5px;
 }

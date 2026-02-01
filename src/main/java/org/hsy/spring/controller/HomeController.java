@@ -3,8 +3,6 @@ package org.hsy.spring.controller;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.hsy.spring.dto.UserSignupDTO;
-import org.hsy.spring.entity.UserEntity;
-import org.hsy.spring.service.UserDetailService;
 import org.hsy.spring.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +21,11 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(Model model) {
+        return "index";
+    }
+
+    @GetMapping("/index")
+    public String index(Model model) {
         return "index";
     }
 
@@ -52,4 +55,10 @@ public class HomeController {
 
         return "redirect:/login";
     }
+
+    @GetMapping("/diet")
+    public String diet(Model model) {
+        return "diet";
+    }
+
 }

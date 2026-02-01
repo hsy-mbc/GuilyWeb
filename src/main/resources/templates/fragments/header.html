@@ -1,18 +1,41 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/springsecurity">
 <body>
 
 <header th:fragment="header">
     <div class="header-inner">
-        <div class="logo">Guily</div>
+        <div class="logo"><a th:href="@{/}">Guily</a></div>
 
         <nav class="nav">
-            <a th:href="@{/diet}">식단</a>
-            <a th:href="@{/exercise}">운동</a>
+            <a th:href="@{/#}">식단</a>
+            <a th:href="@{/#}">운동</a>
             <a th:href="@{/board}">게시판</a>
         </nav>
 
-        <a class="login-btn" th:href="@{/login}">로그인</a>
+        <div class="auth-zone">
+            <!-- 1. 로그인하지 않은 경우 (Guest) -->
+            <a th:href="@{/login}" class="login-btn" sec:authorize="isAnonymous()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span>로그인</span>
+            </a>
+
+            <!-- 2. 로그인한 경우 (User) -->
+            <div class="user-info" sec:authorize="isAuthenticated()">
+                <!-- CustomUserDetails에서 실제 이름을 가져옴 -->
+                <a th:href="@{/#}" class="profile-link">
+                    <span sec:authentication="principal.name">사용자</span>님 환영합니다
+                </a>
+
+                <!-- CSRF 활성화를 대비해 로그아웃은 POST 방식으로 처리 -->
+                <form th:action="@{/logout}" method="post" style="display: inline;">
+                    <button type="submit" class="logout-btn">로그아웃</button>
+                </form>
+            </div>
+        </div>
     </div>
 </header>
 

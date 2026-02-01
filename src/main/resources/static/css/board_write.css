@@ -1,0 +1,181 @@
+/* LAYOUT & CONTAINER */
+.write-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px 80px;
+  font-family: 'Pretendard', sans-serif;
+}
+
+/* HEADER */
+.write-header {
+  margin-bottom: 24px;
+}
+
+.write-back {
+  font-size: 14px;
+  color: #666;
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+.write-header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 8px;
+  color: #111;
+}
+
+.write-header p {
+  font-size: 15px;
+  color: #888;
+}
+
+/* CARD */
+.write-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f0f0f0;
+}
+
+/* FORM ELEMENTS */
+.write-group {
+  margin-bottom: 24px;
+}
+
+.write-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* Category Buttons */
+.write-category {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.category {
+  padding: 8px 18px;
+  border-radius: 10px;
+  border: none;
+  background-color: #f3f4f6;
+  color: #666;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.category:hover {
+  background-color: #e5e7eb;
+}
+
+.category.active {
+  background-color: #009b63;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Input & Textarea */
+.form-input, .form-textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+
+.form-input::placeholder, .form-textarea::placeholder {
+  color: #bbb;
+}
+
+.form-input:focus, .form-textarea:focus {
+  border-color: #009b63;
+  background-color: #fff;
+}
+
+.form-textarea {
+  min-height: 250px;
+  resize: none;
+}
+
+/* GUIDE BOX */
+.write-guide {
+  background: #f0fdf4;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.write-guide strong {
+  display: block;
+  font-size: 14px;
+  color: #166534;
+  margin-bottom: 8px;
+}
+
+.write-guide ul {
+  margin: 0;
+  padding-left: 20px;
+  list-style-type: disc;
+}
+
+.write-guide li {
+  font-size: 13.5px;
+  color: #15803d;
+  line-height: 1.8;
+}
+
+/* ACTION BUTTONS */
+.write-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+/* 취소 버튼 */
+.btn-cancel {
+  padding: 12px 24px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  background: #fff;
+  color: #4b5563;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.btn-cancel:hover {
+  background: #f9fafb;
+}
+
+/* 작성 완료 버튼 */
+.btn-submit {
+  padding: 12px 24px;
+  border-radius: 10px;
+  border: none;
+  background-color: #cbd5e1;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: not-allowed;
+  transition: all 0.2s;
+}
+
+.btn-submit.active {
+  background-color: #009b63;
+  cursor: pointer;
+}
+
+.btn-submit.active:hover {
+  background-color: #007f51;
+}

@@ -1,0 +1,31 @@
+/* 컨테이너: 게시판 등 다른 페이지와 너비/간격 통일 */
+.diet-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px 80px;
+}
+
+/* 헤더 스타일: Guily 테마에 맞춘 제목 선언 */
+.diet-header {
+  margin-bottom: 40px;
+}
+
+.diet-header h1 {
+  font-size: 32px;
+  font-weight: 800;
+  color: #111;
+  margin: 0 0 8px 0;
+}
+
+.diet-header p {
+  font-size: 16px;
+  color: #666;
+  margin: 0;
+}
+
+/* 컨텐츠 영역: 나중에 추가될 섹션들 간의 간격 설정 */
+.diet-content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px; /* 섹션 사이의 간격 */
+}

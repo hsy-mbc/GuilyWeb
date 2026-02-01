@@ -47,6 +47,9 @@ dependencies {
     implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
     // 유효성 검사
     implementation 'org.springframework.boot:spring-boot-starter-validation'
+    // Thymeleaf 용 시큐리티 확장 라이브러리
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+
 }
 
 tasks.named('test') {

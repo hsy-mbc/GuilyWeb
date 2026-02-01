@@ -1,28 +1,38 @@
-document.getElementById('btn-check-id').addEventListener('click', function() {
-    const userId = document.querySelector('input[name="userId"]').value;
-    if(!userId) { alert("아이디를 입력하세요."); return; }
+document.addEventListener('DOMContentLoaded', function() {
 
-    fetch(`/api/auth/check-id?userId=${userId}`)
-        .then(res => res.json())
-        .then(isExists => {
-            if(isExists) {
-                alert("이미 사용 중인 아이디입니다.");
+    const btnCheckId = document.getElementById('btn-check-id');
+    const userIdInput = document.querySelector('input[name="userId"]');
+
+    btnCheckId?.addEventListener('click', async function() {
+        const userId = userIdInput.value;
+        if (!userId) { alert("아이디를 입력하세요."); return; }
+
+        try {
+            const isExists = await apiRequest(`/api/auth/check-id?userId=${userId}`);
+
+            if (result.available) {
+                idMsg.innerText = "사용 가능한 아이디입니다.";
+                idMsg.style.color = "#009b63";
+                userIdInput.readOnly = true;
             } else {
-                alert("사용 가능한 아이디입니다.");
+                idMsg.innerText = "이미 사용 중인 아이디입니다.";
+                idMsg.style.color = "#ef4444";
             }
-        });
-});
+        } catch (err) {
+            console.error(err);
+        }
+    });
 
-const form = document.querySelector('.auth-form');
-form.addEventListener('submit', function(e) {
-    const password = document.querySelector('input[name="password"]').value;
-    const passwordConfirm = document.querySelector('input[name="passwordConfirm"]').value; // name 변경 권장
+    const signupForm = document.getElementById('signupForm');
+    signupForm?.addEventListener('submit', function(e) {
+        const password = document.querySelector('input[name="password"]').value;
+        const passwordConfirm = document.querySelector('input[name="passwordConfirm"]').value;
 
-    if (password !== passwordConfirm) {
-        e.preventDefault(); // 폼 전송 중단
-        alert("비밀번호가 일치하지 않습니다.");
-        return;
-    }
+        if (password !== passwordConfirm) {
+            e.preventDefault();
+            alert("비밀번호가 일치하지 않습니다.");
+            return;
+        }
 
-    // 추가 유효성 검사 (필수 입력값 등)
+    });
 });

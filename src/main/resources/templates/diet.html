@@ -1,10 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="fragments/base">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" th:href="@{/css/diet.css}">
+    </th:block>
 </head>
+
 <body>
+
+<div layout:fragment="content">
+    <main class="diet-container">
+
+        <div class="diet-header">
+            <h1>식단 관리</h1>
+            <p>건강한 식습관의 시작, 오늘 무엇을 드셨나요?</p>
+        </div>
+
+        <div class="diet-content">
+
+            <div style="padding: 100px 0; text-align: center; color: #ccc; border: 2px dashed #eee; border-radius: 20px;">
+                여기에 식단 관리 섹션들이 들어갈 예정입니다.
+            </div>
+
+        </div>
+
+    </main>
+</div>
+
+<th:block layout:fragment="script">
+    <script th:src="@{/js/diet.js}"></script>
+</th:block>
 
 </body>
 </html>
