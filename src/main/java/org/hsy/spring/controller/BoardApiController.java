@@ -10,6 +10,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/board")
@@ -23,10 +24,10 @@ public class BoardApiController {
     }
 
     @PostMapping("/{postNo}/like")
-    public ResponseEntity<Integer> likePost(@PathVariable Long postNo,
-                                            @AuthenticationPrincipal CustomUserDetails userDetails) {
-        int updatedLikeCount = boardService.toggleLike(postNo, userDetails.getUsername());
-        return ResponseEntity.ok(updatedLikeCount);
+    public ResponseEntity<Map<String, Object>> likePost(@PathVariable Long postNo,
+                                                        @AuthenticationPrincipal CustomUserDetails userDetails) {
+        Map<String, Object> result = boardService.toggleLike(postNo, userDetails.getUsername());
+        return ResponseEntity.ok(result);
     }
 
 }

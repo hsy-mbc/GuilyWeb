@@ -24,3 +24,9 @@ async function apiRequest(url, options = {}) {
 
     return response.json();
 }
+
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}

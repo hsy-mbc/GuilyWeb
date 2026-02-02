@@ -1,6 +1,7 @@
 package org.hsy.spring.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.hsy.spring.dto.CommentResponseDTO;
 import org.hsy.spring.dto.CommentSaveDTO;
 import org.hsy.spring.security.CustomUserDetails;
 import org.hsy.spring.service.CommentService;
@@ -18,9 +19,10 @@ public class CommentApiController {
     private final CommentService commentService;
 
     @PostMapping
-    public ResponseEntity<String> saveComment(@RequestBody CommentSaveDTO dto,
-                                              @AuthenticationPrincipal CustomUserDetails userDetails) {
-        commentService.saveComment(dto, userDetails.getUsername());
-        return ResponseEntity.ok("댓글이 등록되었습니다.");
+    public ResponseEntity<CommentResponseDTO> saveComment(@RequestBody CommentSaveDTO dto,
+                                                          @AuthenticationPrincipal CustomUserDetails userDetails) {
+        CommentResponseDTO savedComment = commentService.saveComment(dto, userDetails.getUsername());
+        return ResponseEntity.ok(savedComment);
     }
+
 }

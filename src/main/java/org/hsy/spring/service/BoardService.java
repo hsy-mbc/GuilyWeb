@@ -20,7 +20,9 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -139,22 +141,29 @@ public class BoardService {
     }
 
     @Transactional
-    public int toggleLike(Long postNo, String userId) {
+    public Map<String, Object> toggleLike(Long postNo, String userId) {
         BoardEntity board = boardRepository.findById(postNo).orElseThrow();
         UserEntity user = userRepository.findByUserId(userId).orElseThrow();
 
         Optional<LikeEntity> existingLike = likeRepository.findByBoardAndUser(board, user);
 
+        boolean isLiked;
         if (existingLike.isPresent()) {
             likeRepository.delete(existingLike.get());
             board.setLikeCount(board.getLikeCount() - 1);
-            return board.getLikeCount();
+            isLiked = false;
         } else {
             LikeEntity like = LikeEntity.builder().board(board).user(user).build();
             likeRepository.save(like);
             board.setLikeCount(board.getLikeCount() + 1);
-            return board.getLikeCount();
+            isLiked = true;
         }
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("isLiked", isLiked);
+        result.put("count", board.getLikeCount());
+
+        return result;
     }
 
 }
