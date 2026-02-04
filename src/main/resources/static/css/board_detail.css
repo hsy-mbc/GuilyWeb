@@ -44,13 +44,71 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
 }
+
+/* 작성자 정보 영역 */
 .author {
     display: flex;
-    gap: 12px;
     align-items: center;
+    gap: 16px;
 }
+
+.author .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #a8e6cf 0%, #56ab91 100%);
+    flex-shrink: 0;
+}
+
+.author strong {
+    display: block;
+    font-size: 15px;
+    color: #333;
+}
+
+.author span {
+    display: block;
+    font-size: 13px;
+    color: #999;
+    margin-top: 2px;
+}
+
+/* 수정/삭제 버튼 */
+.post-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-edit,
+.btn-delete {
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    background: #fff;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s;
+}
+
+.btn-edit:hover {
+    background: #f0f0f0;
+    border-color: #009b63;
+    color: #009b63;
+}
+
+.btn-delete {
+    color: #dc3545;
+}
+
+.btn-delete:hover {
+    background: #fff5f5;
+    border-color: #dc3545;
+}
+
 .author span {
     font-size: 13px;
     color: #888;
@@ -64,9 +122,22 @@
 .avatar.gray {
     background: #eee;
 }
-.post-stats span {
-    margin-left: 12px;
+
+.post-stats {
+    display: flex;
+    gap: 16px;
     color: #666;
+    font-size: 14px;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.stat-item svg {
+    color: #999;
 }
 
 /* 본문 */
@@ -91,12 +162,39 @@
     text-align: center;
     margin-top: 30px;
 }
+
 .like-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     padding: 12px 28px;
     border-radius: 24px;
     border: 1px solid #ddd;
     background: #fff;
     cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 15px;
+    color: #333;
+}
+
+.like-btn:hover {
+    background: #f8f9fa;
+}
+
+/* 좋아요 눌렀을 때 */
+.like-btn.liked {
+    background: #fff0f0;
+    border-color: #ff6b6b;
+    color: #ff6b6b;
+}
+
+.like-btn.liked .icon-heart {
+    fill: #ff6b6b;
+    stroke: #ff6b6b;
+}
+
+.icon-heart {
+    transition: all 0.3s ease;
 }
 
 /* 댓글 */
@@ -162,6 +260,29 @@
 .comment-like {
     font-size: 13px;
     color: #666;
+}
+
+.comment-write-placeholder {
+    padding: 20px;
+    text-align: center;
+    background-color: #f8f9fa;
+    border: 1px dashed #ddd;
+    border-radius: 8px;
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.comment-write-placeholder a {
+    color: #009b63;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.comment-write-placeholder a:hover {
+    color: #007a4d;
+    text-decoration: underline;
 }
 
 /* 더보기 */

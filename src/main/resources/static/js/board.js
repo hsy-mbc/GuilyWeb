@@ -76,4 +76,41 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    const searchInput = document.querySelector('.board-search-input');
+
+    if (searchInput) {
+        // 엔터키로 검색
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        // 검색 아이콘 클릭 시 검색 (선택사항)
+        const searchIcon = document.querySelector('.search-icon');
+        if (searchIcon) {
+            searchIcon.style.cursor = 'pointer';
+            searchIcon.addEventListener('click', performSearch);
+        }
+    }
+
+    function performSearch() {
+        const keyword = searchInput.value.trim();
+        const urlParams = new URLSearchParams(window.location.search);
+        const currentCategory = urlParams.get('category');
+
+        let searchUrl = '/board?';
+
+        if (currentCategory) {
+            searchUrl += `category=${currentCategory}&`;
+        }
+
+        if (keyword) {
+            searchUrl += `keyword=${encodeURIComponent(keyword)}`;
+        }
+
+        window.location.href = searchUrl;
+    }
+
 });

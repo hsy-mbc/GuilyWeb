@@ -25,6 +25,8 @@ public class CommentService {
         BoardEntity board = boardRepository.findById(dto.getPostNo()).orElseThrow();
         UserEntity user = userRepository.findByUserId(userId).orElseThrow();
 
+        board.setCommentCount(board.getCommentCount() + 1);
+
         CommentEntity comment = CommentEntity.builder()
                 .board(board)
                 .author(user)

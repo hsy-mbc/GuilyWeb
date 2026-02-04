@@ -6,7 +6,7 @@ import lombok.Data;
 import org.hsy.spring.common.enums.PostCategory;
 
 @Data
-public class BoardWriteDTO {
+public class BoardSaveDTO {
 
     @NotNull(message = "카테고리를 선택해주세요.")
     private PostCategory category;

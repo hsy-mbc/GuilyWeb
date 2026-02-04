@@ -33,7 +33,19 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login", "/signup", "/index", "/", "/board/**", "/api/board/**", "/api/auth/**", "/css/**", "/js/**", "/images/**", "/api/post").permitAll()
+                        .requestMatchers("/login", "/signup", "/index", "/",
+                                "/css/**", "/js/**", "/images/**").permitAll()
+                        .requestMatchers("/api/auth/**").permitAll()
+
+                        // 게시판 조회는 누구나 가능
+                        .requestMatchers("/board", "/board/{postNo}", "/api/board/filter").permitAll()
+                        .requestMatchers("/api/board/{postNo}/like").authenticated()
+
+                        // 작성/수정/삭제는 인증 필요
+                        .requestMatchers("/board/write", "/board/edit/**").authenticated()
+                        .requestMatchers("/api/board/**").authenticated()
+                        .requestMatchers("/api/comments/**").authenticated()
+
                         .anyRequest().authenticated()
                 )
                 .formLogin(login -> login

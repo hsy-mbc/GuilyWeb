@@ -1,15 +1,12 @@
 package org.hsy.spring.service;
 
+import org.hsy.spring.dto.*;
 import org.hsy.spring.entity.LikeEntity;
 import org.hsy.spring.repository.LikeRepository;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.hsy.spring.common.enums.PostCategory;
 import org.hsy.spring.common.formatter.DateTimeFormatters;
-import org.hsy.spring.dto.BoardDetailResponseDTO;
-import org.hsy.spring.dto.BoardListDTO;
-import org.hsy.spring.dto.BoardWriteDTO;
-import org.hsy.spring.dto.CommentResponseDTO;
 import org.hsy.spring.entity.BoardEntity;
 import org.hsy.spring.entity.CommentEntity;
 import org.hsy.spring.entity.UserEntity;
@@ -37,7 +34,7 @@ public class BoardService {
 
 
     @Transactional
-    public void savePost(BoardWriteDTO dto, String userId) {
+    public void savePost(BoardSaveDTO dto, String userId) {
         UserEntity author = userRepository.findByUserId(userId)
                 .orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
 
@@ -54,12 +51,27 @@ public class BoardService {
     }
 
 
-    public List<BoardListDTO> getPostList(PostCategory category) {
+    public List<BoardListDTO> getPostList(PostCategory category, String keyword) {
         List<BoardEntity> entities;
-        if (category == null) {
-            entities = boardRepository.findAllByOrderByCreatedAtDesc();
-        } else {
-            entities = boardRepository.findByCategoryOrderByCreatedAtDesc(category);
+
+        if (keyword != null && !keyword.trim().isEmpty()) {
+            if (category == null) {
+                // 전체 검색
+                entities = boardRepository.findByTitleContainingOrContentContainingOrderByCreatedAtDesc(
+                        keyword, keyword);
+            } else {
+                // 카테고리 + 검색
+                entities = boardRepository.findByCategoryAndTitleContainingOrCategoryAndContentContainingOrderByCreatedAtDesc(
+                        category, keyword, category, keyword);
+            }
+        }
+
+        else {
+            if (category == null) {
+                entities = boardRepository.findAllByOrderByCreatedAtDesc();
+            } else {
+                entities = boardRepository.findByCategoryOrderByCreatedAtDesc(category);
+            }
         }
 
         return entities.stream().map(this::convertToDto).collect(Collectors.toList());
@@ -123,6 +135,7 @@ public class BoardService {
                 .title(board.getTitle())
                 .content(board.getContent())
                 .authorName(board.getAuthor().getName())
+                .authorId(board.getAuthor().getUserId())
                 .categoryName(board.getCategory().getDescription())
                 .categoryCode(board.getCategory().name().toLowerCase())
                 .timeAgo(calculateTime(board.getCreatedAt()))
@@ -164,6 +177,39 @@ public class BoardService {
         result.put("count", board.getLikeCount());
 
         return result;
+    }
+
+    public boolean isUserLikedPost(Long postNo, String userId) {
+        BoardEntity board = boardRepository.findById(postNo).orElseThrow();
+        UserEntity user = userRepository.findByUserId(userId).orElseThrow();
+
+        return likeRepository.findByBoardAndUser(board, user).isPresent();
+    }
+
+    @Transactional
+    public void deletePost(Long postNo, String userId) {
+        BoardEntity board = boardRepository.findById(postNo).orElseThrow();
+
+        // 작성자 확인
+        if (!board.getAuthor().getUserId().equals(userId)) {
+            throw new RuntimeException("권한이 없습니다.");
+        }
+
+        boardRepository.delete(board);
+    }
+
+    @Transactional
+    public void updatePost(Long postNo, BoardSaveDTO dto, String userId) {
+        BoardEntity board = boardRepository.findById(postNo).orElseThrow();
+
+        // 작성자 확인
+        if (!board.getAuthor().getUserId().equals(userId)) {
+            throw new RuntimeException("권한이 없습니다.");
+        }
+
+        board.setTitle(dto.getTitle());
+        board.setContent(dto.getContent());
+        board.setCategory(dto.getCategory());
     }
 
 }

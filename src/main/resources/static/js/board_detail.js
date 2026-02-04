@@ -44,6 +44,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const commentList = document.getElementById('comment-list');
         if (!commentList) return;
 
+        const emptyMsg = document.getElementById('comment-empty-msg');
+            if (emptyMsg) {
+                emptyMsg.remove();
+            }
+
         const commentHtml = `
         <li class="comment">
             <div class="avatar gray"></div>
@@ -81,7 +86,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-
     const likeBtn = document.getElementById('btn-like');
     if (likeBtn) {
         likeBtn.addEventListener('click', async function() {
@@ -95,11 +99,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 const countElement = document.querySelector('.like-count');
                 if (countElement) countElement.innerText = result.count;
 
-                // 좋아요 추가/취소 여부에 따라 다른 메시지
                 if (result.isLiked) {
-                    alert("좋아요를 눌렀습니다!");
+                    this.classList.add('liked');
                 } else {
-                    alert("좋아요를 취소했습니다.");
+                    this.classList.remove('liked');
                 }
             } catch (err) {
                 console.error('Like Error:', err);
@@ -107,4 +110,38 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+
+    const deleteBtn = document.getElementById('btn-delete');
+    if (deleteBtn) {
+        deleteBtn.addEventListener('click', async function() {
+            if (!confirm('정말 삭제하시겠습니까?')) {
+                return;
+            }
+
+            const postNo = this.getAttribute('data-post-no');
+
+            try {
+                await apiRequest(`/api/board/${postNo}`, {
+                    method: 'DELETE'
+                });
+
+                alert('게시글이 삭제되었습니다.');
+                location.href = '/board';
+            } catch (err) {
+                console.error('Delete Error:', err);
+                alert('삭제에 실패했습니다.');
+            }
+        });
+    }
+
+
+    const editBtn = document.getElementById('btn-edit');
+    if (editBtn) {
+        editBtn.addEventListener('click', function() {
+            const postNo = this.getAttribute('data-post-no');
+            location.href = `/board/edit/${postNo}`;
+        });
+    }
+
 });

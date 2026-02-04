@@ -12,6 +12,7 @@ public class BoardDetailResponseDTO {
     private String title;
     private String content;
     private String authorName;
+    private String authorId;
     private String categoryName;
     private String categoryCode;
     private String timeAgo;

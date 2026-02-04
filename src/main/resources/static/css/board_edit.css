@@ -1,0 +1,213 @@
+/* 게시글 수정 페이지 */
+.board-write {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.detail-header {
+    margin-bottom: 20px;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    color: #666;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s;
+}
+
+.back-link:hover {
+    color: #009b63;
+}
+
+.container h2 {
+    font-size: 24px;
+    margin-bottom: 30px;
+    color: #333;
+    font-weight: 600;
+}
+
+/* 폼 그룹 */
+.form-group {
+    margin-bottom: 24px;
+}
+
+.write-label {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* 카테고리 버튼 */
+.write-category {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.category {
+    padding: 10px 20px;
+    border: 1px solid #ddd;
+    background: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #666;
+    transition: all 0.2s;
+}
+
+.category:hover {
+    border-color: #009b63;
+    color: #009b63;
+}
+
+.category.active {
+    background: #009b63;
+    border-color: #009b63;
+    color: #fff;
+}
+
+/* 입력 필드 */
+.write-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+}
+
+.write-input:focus {
+    outline: none;
+    border-color: #009b63;
+}
+
+.write-input::placeholder {
+    color: #999;
+}
+
+/* 입력 필드 */
+input[name="title"] {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+}
+
+input[name="title"]:focus {
+    outline: none;
+    border-color: #009b63;
+}
+
+/* 텍스트 영역 */
+.write-textarea,
+textarea[name="content"] {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    line-height: 1.6;
+    resize: vertical;
+    transition: border-color 0.2s;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+.write-textarea:focus,
+textarea[name="content"]:focus {
+    outline: none;
+    border-color: #009b63;
+}
+
+.write-textarea::placeholder,
+textarea[name="content"]::placeholder {
+    color: #999;
+}
+
+/* 액션 버튼 */
+.form-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.btn-submit,
+.btn-cancel {
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-submit {
+    background: #009b63;
+    color: #fff;
+    border: none;
+}
+
+.btn-submit:hover {
+    background: #007a4d;
+}
+
+.btn-submit:active {
+    transform: scale(0.98);
+}
+
+.btn-cancel {
+    background: #fff;
+    color: #666;
+    border: 1px solid #ddd;
+}
+
+.btn-cancel:hover {
+    background: #f8f9fa;
+    border-color: #999;
+    color: #333;
+}
+
+.btn-cancel:active {
+    transform: scale(0.98);
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+    .board-write {
+        padding: 15px;
+    }
+
+    .container h2 {
+        font-size: 20px;
+    }
+
+    .write-category {
+        gap: 6px;
+    }
+
+    .category {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+
+    .form-actions {
+        flex-direction: column-reverse;
+    }
+
+    .btn-submit,
+    .btn-cancel {
+        width: 100%;
+    }
+}
