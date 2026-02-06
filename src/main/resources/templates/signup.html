@@ -25,6 +25,9 @@
 
         <!-- body -->
         <main class="auth-body">
+
+            <div th:if="${errorMessage}" class="alert alert-danger" th:text="${errorMessage}"></div>
+
             <form class="auth-form" th:action="@{/signup}" method="post" id="signupForm">
 
                 <!-- ID 중복체크 포함 -->

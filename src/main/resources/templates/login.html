@@ -24,6 +24,8 @@
 
         <main class="auth-body">
 
+            <!-- 가입 성공 메시지 출력 -->
+            <div th:if="${message}" class="alert alert-info" th:text="${message}"></div>
             <!-- 알림 메시지 (실패/로그아웃) -->
             <div th:if="${param.error}" class="alert alert-danger">
                 ⚠️ 아이디 또는 비밀번호가 일치하지 않습니다.

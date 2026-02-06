@@ -105,8 +105,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     this.classList.remove('liked');
                 }
             } catch (err) {
-                console.error('Like Error:', err);
-                alert("좋아요 처리 중 오류가 발생했습니다.");
+                if (err.message !== "Unauthorized") {
+                    console.error('Like Error:', err);
+                    alert("좋아요 처리 중 오류가 발생했습니다.");
+                }
+
             }
         });
     }

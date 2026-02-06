@@ -18,10 +18,14 @@ public class UserService {
 
     @Transactional
     public void join(UserSignupDTO dto) {
+
+        if (userRepository.existsByUserId(dto.getUserId())) {
+            throw new RuntimeException("이미 존재하는 아이디입니다.");
+        }
+
         // 비밀번호 암호화
         String encodedPw = passwordEncoder.encode(dto.getPassword());
 
-        // DTO -> Entity 변환
         UserEntity userEntity = UserEntity.builder()
                 .userId(dto.getUserId())
                 .password(encodedPw)
@@ -30,7 +34,7 @@ public class UserService {
                 .birthdate(dto.getBirthdate())
                 .height(dto.getHeight())
                 .weight(dto.getWeight())
-                .role(UserRole.CUSTOMER) // 기본값 설정
+                .role(UserRole.CUSTOMER)
                 .status(UserStatus.ACTIVE)
                 .build();
 

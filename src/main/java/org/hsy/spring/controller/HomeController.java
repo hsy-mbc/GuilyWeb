@@ -4,12 +4,14 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.hsy.spring.dto.UserSignupDTO;
 import org.hsy.spring.service.UserService;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -41,19 +43,26 @@ public class HomeController {
 
     @PostMapping("/signup")
     public String signup(@Valid @ModelAttribute("userDTO") UserSignupDTO userDTO,
-                         BindingResult result) {
-        System.out.println("회원가입 요청 들어옴!");
+                         BindingResult result,
+                         RedirectAttributes rttr) {
 
-        // 1. 유효성 검사 실패 시
         if (result.hasErrors()) {
-            System.out.println("에러 발생: " + result.getAllErrors());
-            return "signup"; // 에러 메시지와 함께 가입 페이지로 귀환
+            return "signup";
         }
 
-        // 2. 서비스에 DTO 전달 (서비스에서 엔티티로 변환 후 저장)
-        userService.join(userDTO);
+        try {
+            userService.join(userDTO);
+            rttr.addFlashAttribute("message", "회원가입이 완료되었습니다! 로그인해주세요.");
+            return "redirect:/login";
 
-        return "redirect:/login";
+        } catch (DataIntegrityViolationException e) {
+            rttr.addFlashAttribute("errorMessage", "이미 존재하는 아이디입니다.");
+            return "redirect:/signup";
+        } catch (Exception e) {
+            rttr.addFlashAttribute("errorMessage", "가입 중 오류가 발생했습니다. 다시 시도해주세요.");
+            return "redirect:/signup";
+        }
+
     }
 
     @GetMapping("/diet")

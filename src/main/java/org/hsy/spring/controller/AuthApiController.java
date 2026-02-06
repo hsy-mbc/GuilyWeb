@@ -17,7 +17,6 @@ public class AuthApiController {
 
     @GetMapping("/check-id")
     public ResponseEntity<Boolean> checkId(@RequestParam String userId) {
-        // 아이디가 존재하면 true, 없으면 false 반환
         boolean exists = userRepository.existsByUserId(userId);
         return ResponseEntity.ok(exists);
     }

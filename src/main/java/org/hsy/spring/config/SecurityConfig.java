@@ -1,5 +1,6 @@
 package org.hsy.spring.config;
 
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.hsy.spring.service.UserDetailService;
 import org.springframework.context.annotation.Bean;
@@ -63,6 +64,17 @@ public class SecurityConfig {
                         // CSRF 활성화 시 로그아웃을 POST로 처리해야 하므로 아래 설정 확인 필요
                         .invalidateHttpSession(true)
                         .deleteCookies("JSESSIONID")
+                )
+                .exceptionHandling(conf -> conf
+                        .authenticationEntryPoint((request, response, authException) -> {
+                            if (request.getRequestURI().startsWith("/api/")) {
+                                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                                response.setContentType("application/json;charset=UTF-8");
+                                response.getWriter().write("{\"message\":\"로그인이 필요합니다.\"}");
+                            } else {
+                                response.sendRedirect("/login");
+                            }
+                        })
                 );
 
         return http.build();
