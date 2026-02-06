@@ -13,18 +13,18 @@
 </head>
 
 <div layout:fragment="content">
-    <main class="write-container">
+    <main class="board-write">
 
         <!-- 상단 -->
         <div class="write-header">
-            <a th:href="@{/board}" class="write-back">← 돌아가기</a>
+            <a th:href="@{/board}" class="back-link">← 돌아가기</a>
             <h1>글쓰기</h1>
             <p>커뮤니티에 새로운 글을 작성해보세요</p>
         </div>
 
         <!-- 작성 카드 -->
         <section class="write-card">
-            <form th:action="@{/api/post}" method="post">
+            <form id="writeForm" th:action="@{/api/post}" method="post">
                 <input type="hidden" name="category" id="selectedCategory" value="SUCCESS">
 
                 <!-- 카테고리 -->

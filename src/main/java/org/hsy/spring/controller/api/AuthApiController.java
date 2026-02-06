@@ -1,4 +1,4 @@
-package org.hsy.spring.controller;
+package org.hsy.spring.controller.api;
 
 import lombok.RequiredArgsConstructor;
 import org.hsy.spring.repository.UserRepository;

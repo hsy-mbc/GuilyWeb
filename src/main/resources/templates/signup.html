@@ -9,13 +9,14 @@
     <meta name="_csrf" th:content="${_csrf != null ? _csrf.token : ''}"/>
     <meta name="_csrf_header" th:content="${_csrf != null ? _csrf.headerName : ''}"/>
 
+    <link rel="stylesheet" th:href="@{/css/common.css}">
     <link rel="stylesheet" th:href="@{/css/auth.css}" />
 </head>
 
 <body>
 
 <div class="auth-wrapper">
-    <div class="auth-card signup-card">
+    <div class="auth-card">
 
         <!-- header -->
         <header class="auth-header">
@@ -35,7 +36,7 @@
                     <label class="form-label">아이디 <span class="required">*</span></label>
                     <div class="form-inline">
                         <input type="text" name="userId" id="userId" class="form-input" placeholder="아이디를 입력하세요" required />
-                        <button type="button" id="btn-check-id" class="btn btn-outline-sm">중복확인</button>
+                        <button type="button" id="btn-check-id" class="btn-dark">중복확인</button>
                     </div>
                     <small id="id-msg" class="form-msg"></small>
                 </div>
@@ -53,8 +54,6 @@
                     <small id="pw-msg" class="form-msg"></small>
                 </div>
 
-                <hr class="form-divider" />
-
                 <!-- 개인 정보 섹션 -->
                 <div class="form-group">
                     <label class="form-label">이름 <span class="required">*</span></label>
@@ -63,9 +62,9 @@
 
                 <div class="form-group">
                     <label class="form-label">성별 <span class="required">*</span></label>
-                    <div class="form-radio-group">
-                        <label class="radio-label"><input type="radio" name="gender" value="MALE" required /> 남성</label>
-                        <label class="radio-label"><input type="radio" name="gender" value="FEMALE" required /> 여성</label>
+                    <div class="form-radio">
+                        <label class="label"><input type="radio" name="gender" value="MALE" required /> 남성</label>
+                        <label class="label"><input type="radio" name="gender" value="FEMALE" required /> 여성</label>
                     </div>
                 </div>
 
@@ -75,7 +74,7 @@
                 </div>
 
                 <!-- 신체 정보 (선택) -->
-                <div class="form-row">
+                <div class="form-group">
                     <div class="form-group">
                         <label class="form-label">키 (cm)</label>
                         <input type="number" name="height" class="form-input" placeholder="예: 175" />
@@ -86,7 +85,7 @@
                     </div>
                 </div>
 
-                <div class="form-actions mt-30">
+                <div class="form-actions">
                     <button type="button" class="btn btn-ghost" onclick="location.href='/login'">취소</button>
                     <button type="submit" class="btn btn-primary">가입하기</button>
                 </div>

@@ -8,57 +8,67 @@
 <head>
     <title>게시글 수정</title>
     <th:block layout:fragment="css">
-        <link rel="stylesheet" th:href="@{/css/board_edit.css}">
+        <link rel="stylesheet" th:href="@{/css/board.css}">
+        <link rel="stylesheet" th:href="@{/css/board_write.css}">
     </th:block>
 </head>
 
-<div layout:fragment="content" class="board-write">
-    <div class="detail-header">
-        <a th:href="@{/board/{no}(no=${post.postNo})}" class="back-link">← 돌아가기</a>
-    </div>
+<div layout:fragment="content">
+    <main class="board-write">
 
-    <div class="container">
-        <h2>게시글 수정</h2>
+        <!-- 상단 -->
+        <div class="write-header">
+            <a th:href="@{/board/{no}(no=${post.postNo})}" class="back-link">← 돌아가기</a>
+            <h1>게시글 수정</h1>
+            <p>작성한 글을 수정하세요</p>
+        </div>
 
-        <form id="editForm">
-            <input type="hidden" id="postNo" th:value="${post.postNo}">
-            <input type="hidden" id="selectedCategory" th:value="${post.categoryCode}">
+        <!-- 수정 카드 -->
+        <section class="write-card">
+            <form id="editForm">
+                <input type="hidden" id="postNo" th:value="${post.postNo}">
+                <input type="hidden" id="selectedCategory" th:value="${post.categoryCode}">
 
-            <div class="form-group">
-                <label class="write-label">카테고리</label>
-                <div class="write-category">
-                    <button type="button" class="category" data-value="SUCCESS"
-                            th:classappend="${post.categoryCode == 'SUCCESS' ? 'active' : ''}">성공후기</button>
-                    <button type="button" class="category" data-value="RECIPE"
-                            th:classappend="${post.categoryCode == 'RECIPE' ? 'active' : ''}">레시피</button>
-                    <button type="button" class="category" data-value="QUESTION"
-                            th:classappend="${post.categoryCode == 'QUESTION' ? 'active' : ''}">질문</button>
-                    <button type="button" class="category" data-value="INFO"
-                            th:classappend="${post.categoryCode == 'INFO' ? 'active' : ''}">정보</button>
-                    <button type="button" class="category" data-value="FREE"
-                            th:classappend="${post.categoryCode == 'FREE' ? 'active' : ''}">자유</button>
+                <!-- 카테고리 -->
+                <div class="write-group">
+                    <label class="write-label">카테고리</label>
+                    <div class="write-category">
+                        <button type="button" class="category" data-value="SUCCESS"
+                                th:classappend="${post.categoryCode == 'SUCCESS' ? 'active' : ''}">성공후기</button>
+                        <button type="button" class="category" data-value="RECIPE"
+                                th:classappend="${post.categoryCode == 'RECIPE' ? 'active' : ''}">레시피</button>
+                        <button type="button" class="category" data-value="QUESTION"
+                                th:classappend="${post.categoryCode == 'QUESTION' ? 'active' : ''}">질문</button>
+                        <button type="button" class="category" data-value="INFO"
+                                th:classappend="${post.categoryCode == 'INFO' ? 'active' : ''}">정보</button>
+                        <button type="button" class="category" data-value="FREE"
+                                th:classappend="${post.categoryCode == 'FREE' ? 'active' : ''}">자유</button>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <label class="write-label">제목</label>
-                <input type="text" name="title" class="write-input" th:value="${post.title}"
-                       placeholder="제목을 입력하세요" required>
-            </div>
+                <!-- 제목 -->
+                <div class="write-group">
+                    <label class="write-label">제목</label>
+                    <input type="text" name="title" class="form-input" th:value="${post.title}"
+                           placeholder="제목을 입력하세요" required>
+                </div>
 
-            <div class="form-group">
-                <label class="write-label">내용</label>
-                <textarea name="content" class="write-textarea" rows="15"
-                          placeholder="내용을 입력하세요" required th:text="${post.content}"></textarea>
-            </div>
+                <!-- 내용 -->
+                <div class="write-group">
+                    <label class="write-label">내용</label>
+                    <textarea name="content" class="form-textarea"
+                              placeholder="내용을 입력하세요" required th:text="${post.content}"></textarea>
+                </div>
 
-            <div class="form-actions">
-                <button type="button" class="btn-cancel" onclick="history.back()">취소</button>
-                <button type="submit" class="btn-submit">수정 완료</button>
-            </div>
-        </form>
-    </div>
+                <!-- 버튼 -->
+                <div class="write-actions">
+                    <a th:href="@{/board/{no}(no=${post.postNo})}" class="btn-cancel">취소</a>
+                    <button type="submit" class="btn-submit">수정 완료</button>
+                </div>
+            </form>
+        </section>
 
+    </main>
 </div>
 
 <th:block layout:fragment="script">

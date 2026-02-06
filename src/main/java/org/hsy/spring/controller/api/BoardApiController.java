@@ -1,16 +1,14 @@
-package org.hsy.spring.controller;
+package org.hsy.spring.controller.api;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.hsy.spring.common.enums.PostCategory;
-import org.hsy.spring.dto.BoardDetailResponseDTO;
 import org.hsy.spring.dto.BoardListDTO;
 import org.hsy.spring.dto.BoardSaveDTO;
 import org.hsy.spring.security.CustomUserDetails;
 import org.hsy.spring.service.BoardService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

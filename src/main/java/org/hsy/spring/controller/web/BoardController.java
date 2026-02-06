@@ -1,4 +1,4 @@
-package org.hsy.spring.controller;
+package org.hsy.spring.controller.web;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -8,7 +8,6 @@ import org.hsy.spring.dto.BoardListDTO;
 import org.hsy.spring.dto.BoardSaveDTO;
 import org.hsy.spring.security.CustomUserDetails;
 import org.hsy.spring.service.BoardService;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

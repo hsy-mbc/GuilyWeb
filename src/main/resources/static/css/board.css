@@ -1,356 +1,342 @@
-/* BOARD LAYOUT */
+/* ==========================================
+   BOARD.CSS - 게시판 목록 + 페이지 공통
+   ========================================== */
+
+/* ===== 게시판 목록 레이아웃 ===== */
 .board-container {
-max-width: 900px;
-margin: 0 auto;
-padding: 40px 20px 80px;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
 }
 
-/* HEADER */
+/* ===== 게시판 헤더 ===== */
 .board-header {
-display: flex;
-justify-content: space-between;
-align-items: center;
-margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.board-title h1 {
+    font-size: 26px;
+    font-weight: 700;
+    margin: 0 0 4px 0;
+    color: #111;
+}
+
+.board-title p {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
 }
 
 /* 글쓰기 버튼 */
 .btn-write {
-background: #ffffff;
-color: #009b63;
-padding: 10px 22px;
-border-radius: 999px;
-font-size: 14px;
-font-weight: 700;
-text-decoration: none;
-border: 1px solid rgba(0, 155, 99, 0.2);
-box-shadow: 0 4px 12px rgba(0, 155, 99, 0.15);
-transition: all 0.2s ease;
-display: inline-flex;
-align-items: center;
-gap: 6px;
+    background: #ffffff;
+    color: #009b63;
+    padding: 10px 22px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    border: 1px solid rgba(0, 155, 99, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 155, 99, 0.15);
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
 }
 
 .btn-write:hover {
-background: #f0fff4;
-color: #008452;
-box-shadow: 0 6px 16px rgba(0, 155, 99, 0.25);
-transform: translateY(-1px);
+    background: #f0fff4;
+    color: #008452;
+    box-shadow: 0 6px 16px rgba(0, 155, 99, 0.25);
+    transform: translateY(-1px);
 }
 
 .btn-write .plus {
-font-size: 18px;
-margin-top: -2px;
+    font-size: 18px;
+    margin-top: -2px;
 }
 
-.board-title h1 {
-font-size: 26px;
-font-weight: 700;
-margin: 0 0 4px 0;
-color: #111;
-}
-
-.board-title p {
-font-size: 14px;
-color: #666;
-margin: 0;
-}
-
+/* ===== 검색 ===== */
 .board-search {
-margin-bottom: 32px;
+    margin-bottom: 32px;
 }
 
 .search-inner {
-position: relative;
-width: 100%;
+    position: relative;
+    width: 100%;
 }
 
 .search-icon {
-position: absolute;
-left: 16px;
-top: 50%;
-transform: translateY(-50%);
-pointer-events: none;
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
 }
 
 .board-search-input {
-width: 100%;
-height: 48px;
-padding: 0 16px 0 48px;
-border-radius: 12px;
-border: 1px solid #e1e4e8;
-background-color: #ffffff;
-font-size: 15px;
-outline: none;
-transition: all 0.2s ease;
-color: #333;
+    width: 100%;
+    height: 48px;
+    padding: 0 16px 0 48px;
+    border-radius: 12px;
+    border: 1px solid #e1e4e8;
+    background-color: #ffffff;
+    font-size: 15px;
+    outline: none;
+    transition: all 0.2s ease;
+    color: #333;
 }
 
 .board-search-input:focus {
-border-color: #009b63;
-box-shadow: 0 0 0 3px rgba(0, 155, 99, 0.1);
+    border-color: #009b63;
+    box-shadow: 0 0 0 3px rgba(0, 155, 99, 0.1);
 }
 
 .board-search-input::placeholder {
-color: #b0b6bd;
+    color: #b0b6bd;
 }
 
-/* CATEGORY */
+/* ===== 카테고리 컨테이너 ===== */
 .board-category {
-display: flex;
-gap: 10px;
-margin-bottom: 32px;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 32px;
 }
 
-.category {
-padding: 10px 18px;
-border-radius: 10px;
-border: 1px solid #e1e4e8;
-background: #fff;
-font-size: 14px;
-font-weight: 500;
-color: #4b5563;
-cursor: pointer;
-transition: all 0.2s ease;
-}
-
-.category:hover:not(.active) {
-border-color: #009b63;
-color: #009b63;
-}
-
-.category.active {
-background: #009b63;
-color: #fff;
-border-color: #009b63;
-font-weight: 700;
-}
-
-/* LIST */
+/* ===== 게시글 리스트 ===== */
 .board-list {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
 .board-item {
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
-  border: 1px solid #f1f3f5;
-  position: relative;
-  transition: box-shadow 0.2s ease;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    border: 1px solid #f1f3f5;
+    position: relative;
+    transition: box-shadow 0.2s ease;
 }
 
 .board-item:hover {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
 .board-item-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
 }
 
 .profile {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-}
-
-.avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #e6f4f1;
+    display: flex;
+    gap: 12px;
+    align-items: center;
 }
 
 .nickname {
-  font-size: 15px;
-  font-weight: 700;
-  color: #333;
-  display: block;
+    font-size: 15px;
+    font-weight: 700;
+    color: #333;
+    display: block;
 }
 
 .time {
-  font-size: 12px;
-  color: #999;
-  margin-top: 2px;
+    font-size: 12px;
+    color: #999;
+    margin-top: 2px;
 }
 
 .board-item .badge {
-  position: absolute;
-  top: 24px;
-  right: 24px;
-  padding: 5px 14px;
-  border-radius: 10px;
-  font-size: 12px;
-  font-weight: 700;
+    position: absolute;
+    top: 24px;
+    right: 24px;
 }
 
 .board-item-title {
-  font-size: 18px;
-  font-weight: 800;
-  margin: 14px 0 8px;
-  color: #111;
-  line-height: 1.4;
+    font-size: 18px;
+    font-weight: 800;
+    margin: 14px 0 8px;
+    color: #111;
+    line-height: 1.4;
 }
 
 .board-item-title a {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-  transition: color 0.2s;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: color 0.2s;
 }
 
 .board-item-title a:hover {
-  color: #009b63;
+    color: #009b63;
 }
 
 .board-item-content {
-  font-size: 14px;
-  color: #666;
-  line-height: 1.6;
-  margin-bottom: 18px;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 18px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .board-item-footer {
-  display: flex;
-  gap: 16px;
-  margin-top: 4px;
-}
-
-.stat-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: #8e9aaf;
-  font-size: 15px;
-  font-weight: 500;
-}
-
-.stat-item svg {
-  stroke: #717d8e;
-  transition: all 0.2s ease;
+    display: flex;
+    gap: 16px;
+    margin-top: 4px;
 }
 
 .stat-item:hover {
-  color: #009b63;
+    color: #009b63;
 }
+
 .stat-item:hover svg {
-  stroke: #009b63;
+    stroke: #009b63;
 }
 
 .icon-heart {
-  width: 19px;
-  height: 19px;
+    width: 19px;
+    height: 19px;
 }
 
 .icon-comment {
-  width: 18px;
-  height: 18px;
-  margin-top: 1px;
+    width: 18px;
+    height: 18px;
+    margin-top: 1px;
 }
 
-/* badge */
-.badge {
-padding: 4px 12px;
-border-radius: 999px;
-font-size: 12px;
-font-weight: 700;
-display: inline-block;
-white-space: nowrap;
-}
-
-/* 성공후기 (Green) */
-.badge.success {
-background: #e3f6ee;
-color: #059669;
-}
-
-/* 레시피 (Blue) */
-.badge.recipe {
-background: #e0f2fe;
-color: #0284c7;
-}
-
-/* 질문 (Orange/Amber) */
-.badge.question {
-background: #fff7ed;
-color: #ea580c;
-}
-
-/* 정보 (Purple) */
-.badge.info {
-background: #f5f3ff;
-color: #7c3aed;
-}
-
-/* 자유 (Gray) */
-.badge.free {
-background: #f3f4f6;
-color: #4b5563;
-}
-
-.badge:hover {
-filter: brightness(0.95);
-cursor: default;
-}
-
-/* content */
-.board-item-title {
-font-size: 16px;
-font-weight: 700;
-margin-top: 4px;
-margin-bottom: 6px;
-}
-
-.board-item-content {
-font-size: 14px;
-color: #555;
-line-height: 1.5;
-margin-bottom: 12px;
-}
-
-.board-item-footer {
-display: flex;
-gap: 16px;
-font-size: 13px;
-color: #777;
-}
-
-/* MORE */
+/* ===== 더보기 버튼 ===== */
 .board-more {
-display: flex;
-justify-content: center;
-margin-top: 32px;
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
 }
 
 .board-more .btn {
-background-color: transparent;
-color: #009b63;
-min-width: 120px;
-padding: 10px 18px;
-border-radius: 12px;
-border: 1.5px solid #009b63;
-font-size: 15px;
-font-weight: 600;
-cursor: pointer;
-transition: all 0.2s ease;
+    background-color: transparent;
+    color: #009b63;
+    min-width: 120px;
+    padding: 10px 18px;
+    border-radius: 12px;
+    border: 1.5px solid #009b63;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
 .board-more .btn:hover {
-background-color: rgba(0, 155, 99, 0.05);
-border-color: #007f51;
-color: #007f51;
+    background-color: rgba(0, 155, 99, 0.05);
+    border-color: #007f51;
+    color: #007f51;
 }
 
 .board-more .btn:active {
-transform: scale(0.98);
-background-color: rgba(0, 155, 99, 0.1);
+    transform: scale(0.98);
+    background-color: rgba(0, 155, 99, 0.1);
+}
+
+/* ==========================================
+   게시판 페이지 공통 (detail/write/edit)
+   ========================================== */
+
+/* 공통 컨테이너 */
+.board-detail,
+.board-write {
+    max-width: 900px;
+    margin: 40px auto 80px;
+    padding: 0 20px;
+}
+
+/* 공통 헤더 */
+.detail-header,
+.write-header {
+    margin-bottom: 24px;
+}
+
+/* 뒤로가기 링크 */
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: #666;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+    margin-bottom: 8px;
+}
+
+.back-link:hover {
+    color: #009b63;
+}
+
+/* 공통 카드 */
+.post-card,
+.write-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f0f0f0;
+}
+
+/* Write 헤더 타이틀 */
+.write-header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0 0 8px;
+    color: #111;
+}
+
+.write-header p {
+    font-size: 15px;
+    color: #888;
+    margin: 0;
+}
+
+/* Write 그룹 (폼) */
+.write-group {
+    margin-bottom: 24px;
+}
+
+.write-category {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* 가이드 박스 (작성 페이지 전용) */
+.write-guide {
+    background: #f0fdf4;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.write-guide strong {
+    display: block;
+    font-size: 14px;
+    color: #166534;
+    margin-bottom: 8px;
+}
+
+.write-guide ul {
+    margin: 0;
+    padding-left: 20px;
+    list-style-type: disc;
+}
+
+.write-guide li {
+    font-size: 13.5px;
+    color: #15803d;
+    line-height: 1.8;
 }
