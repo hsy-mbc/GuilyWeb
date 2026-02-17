@@ -82,6 +82,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
+    const refreshIconSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
+        <path d="M21 3v5h-5"></path>
+        <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path>
+        <path d="M8 16H3v5"></path>
+    </svg>`;
+
     function displayRecommendations(data) {
         const grid = document.querySelector('.recommend-grid');
         if (!grid) {
@@ -117,15 +124,20 @@ document.addEventListener('DOMContentLoaded', function() {
                         <strong class="recommend-kcal">${totalCalories} kcal</strong>
                     </div>
 
-                    <button class="btn-recommend-detail" data-meal-type="${mealType}">
-                        상세
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="9 18 15 12 9 6"></polyline>
-                        </svg>
+                    <button class="btn-recommend-refresh" data-meal-type="${mealType}">
+                        ${refreshIconSvg}
+                        새로고침
                     </button>
                 </div>
             `;
         }).join('');
+
+        // 새로고침 버튼 이벤트
+        document.querySelectorAll('.btn-recommend-refresh').forEach(btn => {
+            btn.addEventListener('click', function() {
+                loadRecommendations();
+            });
+        });
 
         console.log('✅ 추천 표시 완료');
     }

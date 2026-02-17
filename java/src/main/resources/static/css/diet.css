@@ -263,6 +263,10 @@
 }
 
 /* ===== AI 식단 추천 ===== */
+.ai-recommend-section {
+    margin-bottom: 32px;
+}
+
 .ai-recommend-header {
     display: flex;
     align-items: center;
@@ -291,12 +295,22 @@
     margin-left: 4px;
 }
 
+/* ===== 추천 그리드 ===== */
+.recommend-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+/* ===== 추천 카드 ===== */
 .recommend-card {
     background: #ffffff;
     border-radius: 16px;
     padding: 24px;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
     border: 1px solid #f1f3f5;
+    display: flex;
+    flex-direction: column;
 }
 
 .recommend-card-header {
@@ -339,10 +353,12 @@
     margin: 0;
 }
 
+/* ===== 추천 음식 리스트 ===== */
 .recommend-list {
     list-style: none;
     padding: 0;
     margin: 0 0 16px 0;
+    flex: 1;
 }
 
 .recommend-list li {
@@ -352,14 +368,22 @@
     padding: 8px 0;
     font-size: 14px;
     color: #333;
+    border-bottom: 1px solid #f8f9fa;
+}
+
+.recommend-list li:last-child {
+    border-bottom: none;
 }
 
 .recommend-list .food-kcal {
     font-size: 13px;
     color: #888;
     font-weight: 500;
+    white-space: nowrap;
+    margin-left: 8px;
 }
 
+/* ===== 총 칼로리 ===== */
 .recommend-total {
     display: flex;
     justify-content: space-between;
@@ -377,7 +401,8 @@
     color: #a855f7;
 }
 
-.btn-recommend-detail {
+/* ===== 새로고침 버튼 ===== */
+.btn-recommend-refresh {
     width: 100%;
     padding: 12px;
     border-radius: 8px;
@@ -391,11 +416,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 4px;
+    gap: 6px;
+    margin-top: auto;
 }
 
-.btn-recommend-detail:hover {
+.btn-recommend-refresh:hover {
     background: #9333ea;
+}
+
+/* ===== 반응형 ===== */
+@media (max-width: 768px) {
+    .recommend-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* ===== 영양 요약 ===== */
