@@ -1,0 +1,154 @@
+/* ===== Hero ===== */
+.hero {
+  padding: 140px 24px;
+  text-align: center;
+  background-color: #ffffff;
+}
+
+.hero-inner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero h1 {
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 24px;
+  color: #111827;
+  letter-spacing: -0.02em;
+}
+
+.hero h1 span {
+  color: #059669;
+}
+
+.hero p {
+  color: #4b5563;
+  font-size: 20px;
+  line-height: 1.6;
+  margin-bottom: 48px;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+/* 버튼 공통 스타일 */
+.btn {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 32px;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+/* 시작하기 버튼 (Primary) */
+.btn.primary {
+  background: #059669;
+  color: #ffffff !important;
+}
+
+.btn.primary:hover {
+  background: #047857;
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.2);
+}
+
+.btn.outline {
+  background: white;
+  color: #059669;
+  border: 2px solid #059669;
+}
+
+.btn.outline:hover {
+  background: #ecfdf5;
+}
+
+.btn svg {
+  transition: transform 0.2s ease;
+}
+
+.btn.primary:hover svg {
+  transform: translateX(4px);
+}
+
+/* ===== Features ===== */
+.features {
+  padding: 80px 24px;
+}
+
+.features-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 마우스 올렸을 때 효과 */
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+.card a {
+  display: block;
+  padding: 32px;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 아이콘 박스 공통 */
+.icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-bottom: 24px;
+}
+
+/* 아이콘 개별 색상 (두 번째 이미지 참고) */
+.icon-box.orange { background: #fff3e0; }
+.icon-box.blue   { background: #e3f2fd; }
+.icon-box.purple { background: #f3e5f5; }
+.icon-box.green  { background: #e8f5e9; }
+
+/* 제목 스타일 */
+.card h3 {
+  margin: 0 0 12px 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #111;
+}
+
+/* 설명글 스타일 */
+.card p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #666;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

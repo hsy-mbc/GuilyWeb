@@ -1,0 +1,86 @@
+/* ==========================================
+   BOARD_WRITE.CSS - 게시글 작성/수정 공통
+   ========================================== */
+
+/* 제목 입력 (write 전용 스타일) */
+input[name="title"] {
+    font-size: 16px;
+}
+
+input[name="title"]::placeholder {
+    color: #bbb;
+}
+
+/* 내용 입력 (write 전용) */
+textarea[name="content"] {
+    min-height: 250px;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+textarea[name="content"]::placeholder {
+    color: #bbb;
+}
+
+/* ===== 작성 완료 버튼 활성화 상태 ===== */
+.btn-submit {
+    transition: all 0.2s;
+}
+
+.btn-submit:disabled {
+    background-color: #cbd5e1;
+    color: #fff;
+    cursor: not-allowed;
+}
+
+.btn-submit.active {
+    background-color: #009b63;
+    cursor: pointer;
+}
+
+.btn-submit.active:hover {
+    background-color: #007f51;
+    transform: translateY(-1px);
+}
+
+.btn-submit:active {
+    transform: scale(0.98);
+}
+
+/* ===== 반응형 ===== */
+@media (max-width: 768px) {
+    .board-write {
+        padding: 15px;
+    }
+
+    .write-header h1 {
+        font-size: 24px;
+    }
+
+    .write-card {
+        padding: 24px;
+    }
+
+    .write-category {
+        gap: 6px;
+    }
+
+    .category {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+
+    .form-actions,
+    .write-actions {
+        flex-direction: column-reverse;
+    }
+
+    .btn-submit,
+    .btn-cancel {
+        width: 100%;
+    }
+
+    textarea[name="content"] {
+        min-height: 200px;
+    }
+}

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="fragments/base">
+<body>
+
+<head>
+    <title>식단 관리 | Guily</title>
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" th:href="@{/css/diet.css}">
+    </th:block>
+</head>
+
+<div layout:fragment="content">
+    <main class="diet-container">
+
+        <!-- 오늘의 목표 카드 -->
+        <section class="goal-card">
+            <div class="goal-header">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+                <h2>오늘의 목표</h2>
+            </div>
+
+            <div class="goal-content">
+                <div class="calories-big">
+                    2,100 <span class="unit">kcal</span>
+                </div>
+                <div class="calories-subtitle">하루 권장 섭취량</div>
+                <button class="btn-goal-link">목표: 체중 감량</button>
+            </div>
+
+            <!-- AI 코멘트 -->
+            <div class="ai-comment">
+                <div class="ai-badge">AI</div>
+                <div class="ai-text">
+                    현재까지 1,400kcal를 섭취하셨네요! 목표 칼로리의 67%를 달성하셨습니다. 저녁 식사로 단백질이 풍부한 음식을 선택하시면 오늘의 목표를 완벽하게 달성할 수 있어요. 꾸준히 실천하고 계시니 이번 주 목표도 충분히 달성 가능합니다! 👍
+                </div>
+            </div>
+        </section>
+
+        <!-- 오늘의 식사 -->
+        <section class="meal-section">
+            <h2 class="section-title">오늘의 식사</h2>
+
+            <div class="meal-grid">
+                <!-- 아침 -->
+                <div class="meal-card">
+                    <div class="meal-header">
+                        <div class="meal-icon breakfast">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 8h1a4 4 0 1 1 0 8h-1"></path>
+                                <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"></path>
+                                <line x1="6" y1="2" x2="6" y2="8"></line>
+                                <line x1="10" y1="2" x2="10" y2="8"></line>
+                                <line x1="14" y1="2" x2="14" y2="8"></line>
+                            </svg>
+                        </div>
+                        <h3>아침</h3>
+                    </div>
+
+                    <ul class="meal-list">
+                        <li>
+                            <span class="food-name">토스트</span>
+                            <span class="food-kcal">150 kcal</span>
+                        </li>
+                        <li>
+                            <span class="food-name">계란 프라이</span>
+                            <span class="food-kcal">90 kcal</span>
+                        </li>
+                        <li>
+                            <span class="food-name">우유</span>
+                            <span class="food-kcal">130 kcal</span>
+                        </li>
+                    </ul>
+
+                    <div class="meal-total">
+                        <span>총 칼로리</span>
+                        <strong class="total-kcal">370 kcal</strong>
+                    </div>
+
+                    <div class="meal-actions">
+                        <button class="btn-meal-primary">+ 추가</button>
+                        <button class="btn-meal-secondary">
+                            상세
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 점심 -->
+                <div class="meal-card">
+                    <div class="meal-header">
+                        <div class="meal-icon lunch">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M12 6v6l4 2"></path>
+                            </svg>
+                        </div>
+                        <h3>점심</h3>
+                    </div>
+
+                    <ul class="meal-list">
+                        <li>
+                            <span class="food-name">닭가슴살 샐러드</span>
+                            <span class="food-kcal">320 kcal</span>
+                        </li>
+                        <li>
+                            <span class="food-name">현미밥</span>
+                            <span class="food-kcal">250 kcal</span>
+                        </li>
+                    </ul>
+
+                    <div class="meal-total">
+                        <span>총 칼로리</span>
+                        <strong class="total-kcal">570 kcal</strong>
+                    </div>
+
+                    <div class="meal-actions">
+                        <button class="btn-meal-primary">+ 추가</button>
+                        <button class="btn-meal-secondary">
+                            상세
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 저녁 -->
+                <div class="meal-card">
+                    <div class="meal-header">
+                        <div class="meal-icon dinner">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                            </svg>
+                        </div>
+                        <h3>저녁</h3>
+                    </div>
+
+                    <ul class="meal-list">
+                        <li>
+                            <span class="food-name">연어구이</span>
+                            <span class="food-kcal">280 kcal</span>
+                        </li>
+                        <li>
+                            <span class="food-name">브로콜리</span>
+                            <span class="food-kcal">50 kcal</span>
+                        </li>
+                        <li>
+                            <span class="food-name">고구마</span>
+                            <span class="food-kcal">130 kcal</span>
+                        </li>
+                    </ul>
+
+                    <div class="meal-total">
+                        <span>총 칼로리</span>
+                        <strong class="total-kcal">460 kcal</strong>
+                    </div>
+
+                    <div class="meal-actions">
+                        <button class="btn-meal-primary">+ 추가</button>
+                        <button class="btn-meal-secondary">
+                            상세
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI 식단 추천 -->
+        <section class="ai-recommend-section">
+            <div class="ai-recommend-header">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+                <h2>AI 식단 추천</h2>
+                <span class="ai-subtitle-badge">목표 달성에 도움되는 식단</span>
+            </div>
+
+            <div class="recommend-grid">
+                <!-- 추천 1 -->
+                <div class="recommend-card">
+                    <div class="recommend-card-header">
+                        <div class="recommend-icon apple">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 11l19-9-9 19-2-8-8-2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="recommend-title">고단백 식단</h3>
+                    </div>
+
+                    <ul class="recommend-list">
+                        <li>
+                            <span class="food-name">그릭 요거트 볼</span>
+                            <span class="food-kcal">280 kcal</span>
+                        </li>
+                        <li>
+                            <span class="food-name">닭가슴살 스테이크</span>
+                            <span class="food-kcal">250 kcal</span>
+                        </li>
+                        <li>
+                            <span class="food-name">계란 흰자</span>
+                            <span class="food-kcal">70 kcal</span>
+                        </li>
+                    </ul>
+
+                    <div class="recommend-total">
+                        <span>총 칼로리</span>
+                        <strong class="recommend-kcal">600 kcal</strong>
+                    </div>
+
+                    <button class="btn-recommend-detail">
+                        새로고침
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- 추천 2 -->
+                <div class="recommend-card">
+                    <div class="recommend-card-header">
+                        <div class="recommend-icon salad">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M7 21h10"></path>
+                                <path d="M12 21a9 9 0 0 0 9-9H3a9 9 0 0 0 9 9Z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="recommend-title">저칼로리 식단</h3>
+                    </div>
+
+                    <ul class="recommend-list">
+                        <li>
+                            <span class="food-name">두부 미소국</span>
+                            <span class="food-kcal">180 kcal</span>
+                        </li>
+                        <li>
+                            <span class="food-name">퀴노아 샐러드</span>
+                            <span class="food-kcal">320 kcal</span>
+                        </li>
+                        <li>
+                            <span class="food-name">브로콜리</span>
+                            <span class="food-kcal">50 kcal</span>
+                        </li>
+                    </ul>
+
+                    <div class="recommend-total">
+                        <span>총 칼로리</span>
+                        <strong class="recommend-kcal">550 kcal</strong>
+                    </div>
+
+                    <button class="btn-recommend-detail">
+                        새로고침
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- 추천 3 -->
+                <div class="recommend-card">
+                    <div class="recommend-card-header">
+                        <div class="recommend-icon tofu">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M12 6v6l4 2"></path>
+                            </svg>
+                        </div>
+                        <h3 class="recommend-title">균형 잡힌 식단</h3>
+                    </div>
+
+                    <ul class="recommend-list">
+                        <li>
+                            <span class="food-name">아보카도 토스트</span>
+                            <span class="food-kcal">290 kcal</span>
+                        </li>
+                        <li>
+                            <span class="food-name">연어 포케</span>
+                            <span class="food-kcal">380 kcal</span>
+                        </li>
+                        <li>
+                            <span class="food-name">견과류 믹스</span>
+                            <span class="food-kcal">160 kcal</span>
+                        </li>
+                    </ul>
+
+                    <div class="recommend-total">
+                        <span>총 칼로리</span>
+                        <strong class="recommend-kcal">830 kcal</strong>
+                    </div>
+
+                    <button class="btn-recommend-detail">
+                        새로고침
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 하루 영양 요약 -->
+        <section class="nutrition-summary">
+            <h2 class="section-title">하루 영양 요약</h2>
+
+            <div class="nutrition-bars">
+                <!-- 탄수화물 -->
+                <div class="nutrition-row">
+                    <div class="nutrition-label">
+                        <span class="nutrition-name">탄수화물</span>
+                        <span class="nutrition-value">180g / 260g</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill carbs" style="width: 69%"></div>
+                    </div>
+                </div>
+
+                <!-- 단백질 -->
+                <div class="nutrition-row">
+                    <div class="nutrition-label">
+                        <span class="nutrition-name">단백질</span>
+                        <span class="nutrition-value">85g / 100g</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill protein" style="width: 85%"></div>
+                    </div>
+                </div>
+
+                <!-- 지방 -->
+                <div class="nutrition-row">
+                    <div class="nutrition-label">
+                        <span class="nutrition-name">지방</span>
+                        <span class="nutrition-value">45g / 60g</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill fat" style="width: 75%"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 총 섭취 칼로리 -->
+        <section class="total-calorie-section">
+            <div class="total-calorie-label">
+                <span class="label-text">총 섭취 칼로리</span>
+                <div class="calorie-display">
+                    <span class="calorie-current">1,400</span>
+                    <span class="calorie-divider">/</span>
+                    <span class="calorie-goal">2,100 kcal</span>
+                </div>
+            </div>
+
+            <div class="progress-bar large">
+                <div class="progress-fill total" style="width: 67%"></div>
+            </div>
+
+            <div class="progress-message">목표 칼로리까지 <strong>700 kcal</strong> 남았습니다</div>
+        </section>
+
+    </main>
+</div>
+
+<th:block layout:fragment="script">
+    <script th:src="@{/js/diet.js}"></script>
+</th:block>
+
+</body>
+</html>

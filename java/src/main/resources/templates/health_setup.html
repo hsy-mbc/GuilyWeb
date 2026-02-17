@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="fragments/base">
+<body>
+
+<head>
+    <title>건강 정보 설정 | Guily</title>
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" th:href="@{/css/health_setup.css}">
+    </th:block>
+</head>
+
+<div layout:fragment="content">
+    <main class="setup-container">
+
+        <!-- 헤더 -->
+        <div class="setup-header">
+            <div class="avatar-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+            </div>
+            <h1>건강 정보 설정</h1>
+            <p class="setup-subtitle">정확한 건강 관리를 위해 기본 정보를 입력해주세요</p>
+        </div>
+
+        <!-- 폼 카드 -->
+        <section class="setup-card">
+            <form id="setupForm">
+
+                <!-- 성별 -->
+                <div class="form-section">
+                    <label class="section-label">성별 <span class="required">*</span></label>
+                    <div class="gender-buttons">
+                        <button type="button" class="gender-btn active" data-value="MALE">
+                            남성
+                        </button>
+                        <button type="button" class="gender-btn" data-value="FEMALE">
+                            여성
+                        </button>
+                    </div>
+                    <input type="hidden" name="gender" id="gender" value="MALE">
+                </div>
+
+                <!-- 신체 정보 -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="section-label">나이 <span class="required">*</span></label>
+                        <div class="input-with-unit">
+                            <input type="number" name="age" class="form-input" placeholder="25" value="25" required>
+                            <span class="input-unit">세</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="section-label">키 <span class="required">*</span></label>
+                        <div class="input-with-unit">
+                            <input type="number" name="height" class="form-input" placeholder="170" value="170" required>
+                            <span class="input-unit">cm</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="section-label">체중 <span class="required">*</span></label>
+                        <div class="input-with-unit">
+                            <input type="number" name="weight" class="form-input" placeholder="65" value="65" required>
+                            <span class="input-unit">kg</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 활동 수준 -->
+                <div class="form-section">
+                    <label class="section-label">활동 수준 <span class="required">*</span></label>
+                    <div class="activity-options">
+                        <label class="activity-option">
+                            <input type="radio" name="activity" value="1.2">
+                            <div class="option-content">
+                                <span class="option-title">매우 낮음</span>
+                                <span class="option-desc">거의 운동 안함</span>
+                            </div>
+                            <svg class="activity-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                            </svg>
+                        </label>
+
+                        <label class="activity-option">
+                            <input type="radio" name="activity" value="1.375">
+                            <div class="option-content">
+                                <span class="option-title">낮음</span>
+                                <span class="option-desc">주 1~3일 가벼운 운동</span>
+                            </div>
+                            <svg class="activity-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                            </svg>
+                        </label>
+
+                        <label class="activity-option active">
+                            <input type="radio" name="activity" value="1.55" checked>
+                            <div class="option-content">
+                                <span class="option-title">보통</span>
+                                <span class="option-desc">주 3~5일 적당한 운동</span>
+                            </div>
+                            <svg class="activity-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                            </svg>
+                        </label>
+
+                        <label class="activity-option">
+                            <input type="radio" name="activity" value="1.725">
+                            <div class="option-content">
+                                <span class="option-title">높음</span>
+                                <span class="option-desc">주 6~7일 강도 높은 운동</span>
+                            </div>
+                            <svg class="activity-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                            </svg>
+                        </label>
+
+                        <label class="activity-option">
+                            <input type="radio" name="activity" value="1.9">
+                            <div class="option-content">
+                                <span class="option-title">매우 높음</span>
+                                <span class="option-desc">매일 높은 강도의 운동 또는 육체 노동</span>
+                            </div>
+                            <svg class="activity-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                            </svg>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 생활 패턴 -->
+                <div class="form-section">
+                    <label class="section-label">생활 패턴</label>
+                    <div class="pattern-buttons">
+                        <button type="button" class="pattern-btn active" data-value="REGULAR">
+                            규칙적
+                        </button>
+                        <button type="button" class="pattern-btn" data-value="IRREGULAR">
+                            불규칙적
+                        </button>
+                        <button type="button" class="pattern-btn" data-value="SHIFT">
+                            교대근무
+                        </button>
+                    </div>
+                    <input type="hidden" name="lifestylePattern" id="lifestylePattern" value="REGULAR">
+                </div>
+
+                <!-- 식단 목표 -->
+                <div class="form-section">
+                    <label class="section-label">식단 목표 <span class="required">*</span></label>
+                    <div class="goal-buttons">
+                        <button type="button" class="goal-btn" data-value="LOSS">
+                            <div class="goal-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <path d="M7 17L17 7"></path>
+                                    <polyline points="7 7 17 7 17 17"></polyline>
+                                </svg>
+                            </div>
+                            <span class="goal-text">체중 감량</span>
+                        </button>
+
+                        <button type="button" class="goal-btn" data-value="GAIN">
+                            <div class="goal-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <path d="M7 7L17 17"></path>
+                                    <polyline points="17 7 17 17 7 17"></polyline>
+                                </svg>
+                            </div>
+                            <span class="goal-text">체중 증가</span>
+                        </button>
+
+                        <button type="button" class="goal-btn active" data-value="MAINTAIN">
+                            <div class="goal-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <circle cx="12" cy="12" r="6"></circle>
+                                    <circle cx="12" cy="12" r="2"></circle>
+                                </svg>
+                            </div>
+                            <span class="goal-text">체중 유지</span>
+                        </button>
+                    </div>
+                    <input type="hidden" name="dietGoal" id="dietGoal" value="MAINTAIN">
+                </div>
+
+                <!-- 회원 전용 혜택 -->
+                <section class="preview-card">
+                    <div class="preview-header">
+                        <div class="preview-icon-large">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M7 17L17 7"></path>
+                                <polyline points="7 7 17 7 17 17"></polyline>
+                            </svg>
+                        </div>
+                        <div class="preview-content">
+                            <h3>회원 전용 혜택</h3>
+                            <p class="preview-intro">회원가입 후 건강 정보를 저장하시면 다음과 같은 혜택을 받으실 수 있습니다:</p>
+
+                            <ul class="preview-list">
+                                <li>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                        <circle cx="12" cy="12" r="1"></circle>
+                                    </svg>
+                                    개인 맞춤형 칼로리 및 영양소 목표 설정
+                                </li>
+                                <li>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                        <circle cx="12" cy="12" r="1"></circle>
+                                    </svg>
+                                    주간/월간 식단 통계 및 분석 리포트 제공
+                                </li>
+                                <li>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                        <circle cx="12" cy="12" r="1"></circle>
+                                    </svg>
+                                    AI 기반 추천 식단 및 건강 코칭
+                                </li>
+                                <li>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                        <circle cx="12" cy="12" r="1"></circle>
+                                    </svg>
+                                    목표 달성 현황 추적 및 성과 기록
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </form>
+        </section>
+
+        <!-- 버튼 영역 -->
+        <div class="setup-actions">
+            <button type="button" class="btn-secondary" onclick="history.back()">나중에 입력하기</button>
+            <button type="submit" class="btn-primary" form="setupForm">저장하고 시작하기</button>
+        </div>
+    </main>
+</div>
+
+<th:block layout:fragment="script">
+    <script th:src="@{/js/health_setup.js}"></script>
+</th:block>
+
+</body>
+</html>

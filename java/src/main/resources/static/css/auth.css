@@ -1,0 +1,164 @@
+/* ==========================================
+   AUTH.CSS - 로그인/회원가입 페이지
+   ========================================== */
+
+/* ===== 기본 레이아웃 ===== */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* 카드 래퍼 */
+.auth-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* 카드 컨테이너 */
+.auth-card {
+    width: 100%;
+    max-width: 450px;
+    background: #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== 헤더 (초록색 영역) ===== */
+.auth-header {
+    background-color: #009b63;
+    padding: 30px 20px;
+    text-align: center;
+    color: #ffffff;
+}
+
+.auth-title {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 800;
+}
+
+.auth-title a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.auth-title a:hover {
+    opacity: 0.9;
+}
+
+.auth-subtitle {
+    margin-top: 8px;
+    font-size: 15px;
+    opacity: 0.9;
+}
+
+/* ===== 폼 본문 ===== */
+.auth-body {
+    padding: 30px 25px;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* ===== 중복체크용 인라인 폼 ===== */
+/* .form-inline - common.css에 정의됨 */
+
+/* ===== 성별 라디오 버튼 ===== */
+.form-radio {
+    display: flex;
+    gap: 20px;
+    padding: 5px 0;
+}
+
+.form-radio label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 15px;
+    cursor: pointer;
+    color: #333;
+}
+
+.form-radio input[type="radio"] {
+    cursor: pointer;
+}
+
+/* ===== 키/몸무게 단위 표시 ===== */
+.form-unit {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.unit-text {
+    position: absolute;
+    right: 15px;
+    color: #64748b;
+    font-size: 14px;
+    pointer-events: none;
+}
+
+/* ===== 버튼 섹션 ===== */
+.form-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.form-actions .btn {
+    flex: 1;
+    height: 50px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+/* ===== 푸터 ===== */
+.auth-footer {
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid #f1f5f9;
+    font-size: 13px;
+    color: #94a3b8;
+}
+
+/* ===== 메시지 ===== */
+/* .form-msg - common.css에 정의됨 */
+/* .alert - common.css에 정의됨 */
+
+/* ===== 반응형 ===== */
+@media (max-width: 480px) {
+    .auth-card {
+        max-width: 100%;
+        border-radius: 0;
+    }
+
+    .auth-header {
+        padding: 25px 20px;
+    }
+
+    .auth-title {
+        font-size: 28px;
+    }
+
+    .auth-body {
+        padding: 25px 20px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .form-actions .btn {
+        width: 100%;
+    }
+}

@@ -1,0 +1,443 @@
+/* ==========================================
+   DIET_SETUP.CSS - 건강 정보 설정 페이지
+   ========================================== */
+
+/* ===== 컨테이너 ===== */
+.setup-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+}
+
+/* ===== 헤더 ===== */
+.setup-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.avatar-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #a8e6cf 0%, #56ab91 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+.avatar-icon svg {
+    color: #ffffff;
+}
+
+.setup-header h1 {
+    font-size: 28px;
+    font-weight: 800;
+    color: #111;
+    margin: 0 0 8px 0;
+}
+
+.setup-subtitle {
+    font-size: 15px;
+    color: #666;
+    margin: 0;
+}
+
+/* ===== 폼 카드 ===== */
+.setup-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 40px 48px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+    margin-bottom: 24px;
+}
+
+.form-section {
+    margin-bottom: 28px;
+}
+
+.form-section:last-child {
+    margin-bottom: 0;
+}
+
+.section-label {
+    display: block;
+    font-size: 15px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 12px;
+}
+
+/* ===== 성별 버튼 ===== */
+.gender-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.gender-btn {
+    padding: 14px;
+    border-radius: 12px;
+    border: 2px solid #e1e4e8;
+    background: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.gender-btn:hover {
+    border-color: #009b63;
+    color: #009b63;
+}
+
+.gender-btn.active {
+    border-color: #009b63;
+    background: #e8f5f1;
+    color: #009b63;
+}
+
+/* ===== 신체 정보 입력 ===== */
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 28px;
+}
+
+.form-group {
+    /* 개별 그룹 */
+}
+
+.input-with-unit {
+    position: relative;
+}
+
+.input-with-unit .form-input {
+    width: 100%;
+    padding-right: 40px;
+}
+
+.input-unit {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    font-weight: 600;
+    color: #888;
+    pointer-events: none;
+}
+
+/* ===== 활동 수준 ===== */
+.activity-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.activity-option {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 24px;
+    border-radius: 12px;
+    border: 2px solid #e1e4e8;
+    background: #ffffff;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.activity-option:hover {
+    border-color: #009b63;
+    background: #f8fdfb;
+}
+
+.activity-option.active {
+    border-color: #009b63;
+    background: #e8f5f1;
+}
+
+.activity-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.option-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.option-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #111;
+    min-width: 80px;
+}
+
+.option-desc {
+    font-size: 13px;
+    color: #666;
+}
+
+/* 심박동 아이콘 */
+.activity-icon {
+    color: #ccc;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+.activity-option:hover .activity-icon {
+    color: #009b63;
+}
+
+.activity-option.active .activity-icon {
+    color: #009b63;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* 심박동 애니메이션 */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+/* ===== 생활 패턴 버튼 ===== */
+.pattern-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.pattern-btn {
+    padding: 12px;
+    border-radius: 10px;
+    border: 2px solid #e1e4e8;
+    background: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.pattern-btn:hover {
+    border-color: #009b63;
+    color: #009b63;
+}
+
+.pattern-btn.active {
+    border-color: #009b63;
+    background: #e8f5f1;
+    color: #009b63;
+}
+
+/* ===== 식단 목표 버튼 ===== */
+.goal-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.goal-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 24px 20px;
+    border-radius: 12px;
+    border: 2px solid #e1e4e8;
+    background: #ffffff;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.goal-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.goal-icon svg {
+    color: #888;
+    transition: color 0.2s;
+}
+
+.goal-text {
+    font-size: 15px;
+    font-weight: 600;
+    color: #666;
+    transition: color 0.2s;
+}
+
+.goal-btn:hover {
+    border-color: #009b63;
+}
+
+.goal-btn:hover .goal-icon svg,
+.goal-btn:hover .goal-text {
+    color: #009b63;
+}
+
+.goal-btn.active {
+    border-color: #009b63;
+    background: #e8f5f1;
+}
+
+.goal-btn.active .goal-icon svg,
+.goal-btn.active .goal-text {
+    color: #009b63;
+}
+
+/* ===== 회원 전용 혜택 ===== */
+.preview-card {
+    background: #e8f5f1;
+    border-radius: 16px;
+    padding: 28px 36px;
+    margin-bottom: 24px;
+}
+
+.preview-header {
+    display: flex;
+    gap: 20px;
+}
+
+.preview-icon-large {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #009b63;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.preview-icon-large svg {
+    color: #ffffff;
+    width: 22px;
+    height: 22px;
+}
+
+.preview-content {
+    flex: 1;
+}
+
+.preview-content h3 {
+    font-size: 17px;
+    font-weight: 700;
+    color: #111;
+    margin: 0 0 8px 0;
+}
+
+.preview-intro {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333;
+    margin: 0 0 16px 0;
+}
+
+.preview-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.preview-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333;
+}
+
+.preview-list li svg {
+    color: #009b63;
+    flex-shrink: 0;
+    margin-top: 4px;
+}
+
+/* ===== 버튼 영역 ===== */
+.setup-actions {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 12px;
+}
+
+.btn-secondary {
+    padding: 16px 24px;
+    border-radius: 12px;
+    border: 1px solid #e1e4e8;
+    background: #ffffff;
+    color: #666;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+    background: #f8f9fa;
+    border-color: #999;
+    color: #333;
+}
+
+.btn-primary {
+    padding: 16px 24px;
+    border-radius: 12px;
+    border: none;
+    background: #009b63;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-primary:hover {
+    background: #007a4d;
+}
+
+/* ===== 반응형 ===== */
+@media (max-width: 768px) {
+    .setup-container {
+        padding: 24px 15px 60px;
+    }
+
+    .setup-card {
+        padding: 24px 20px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .goal-buttons,
+    .pattern-buttons {
+        grid-template-columns: 1fr;
+    }
+
+    .setup-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .gender-buttons {
+        grid-template-columns: 1fr;
+    }
+}
