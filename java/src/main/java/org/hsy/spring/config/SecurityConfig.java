@@ -48,7 +48,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/comments/**").authenticated()
 
                         // 비회원 식단 관리 페이지
-                        .requestMatchers("/diet-entry", "/api/diet/calculate", "/diet", "/health_setup").permitAll()
+                        .requestMatchers("/diet-entry", "/api/diet/**", "/diet", "/health_setup").permitAll()
                         .requestMatchers("/api/user/**").permitAll()
 
                         .anyRequest().authenticated()

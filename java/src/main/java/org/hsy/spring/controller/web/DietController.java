@@ -29,6 +29,23 @@ public class DietController {
         return "diet";
     }
 
+    @GetMapping("/diet_edit")
+    public String dietEdit(@RequestParam(required = false) String meal, Model model) {
+        if (meal == null || meal.isEmpty()) {
+            meal = "breakfast";
+        }
+
+        meal = meal.toLowerCase();
+
+        if (!meal.equals("breakfast") && !meal.equals("lunch") && !meal.equals("dinner")) {
+            meal = "breakfast";
+        }
+
+        model.addAttribute("mealType", meal);
+
+        return "diet_edit";
+    }
+
 
     @GetMapping("/diet-set")
     public String dietSet(@AuthenticationPrincipal CustomUserDetails userDetails,
