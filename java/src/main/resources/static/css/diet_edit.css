@@ -1,0 +1,514 @@
+/* ==========================================
+   DIET_EDIT.CSS - 식단 수정 페이지
+   ========================================== */
+
+/* ===== 컨테이너 ===== */
+.edit-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px 20px 80px;
+}
+
+/* ===== 헤더 ===== */
+.edit-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.btn-back {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid #e1e4e8;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-back:hover {
+    background: #f8f9fa;
+    border-color: #009b63;
+}
+
+.btn-back svg {
+    color: #333;
+}
+
+.edit-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: #111;
+    margin: 0;
+}
+
+/* ===== 섹션 공통 ===== */
+section {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    margin-bottom: 20px;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #111;
+    margin: 0 0 16px 0;
+}
+
+.section-title svg {
+    color: #009b63;
+}
+
+/* ===== 음식 검색 ===== */
+.search-box {
+    display: flex;
+    gap: 8px;
+}
+
+.search-input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid #e1e4e8;
+    border-radius: 10px;
+    font-size: 15px;
+    transition: border 0.2s;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #009b63;
+}
+
+.btn-search {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    border: none;
+    background: #009b63;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-search:hover {
+    background: #007a4d;
+}
+
+/* 검색 결과 */
+.search-results {
+    margin-top: 16px;
+    border-radius: 12px;
+    border: 1px solid #e1e4e8;
+    background: #f8f9fa;
+    overflow: hidden;
+}
+
+.search-results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: #ffffff;
+    border-bottom: 1px solid #e1e4e8;
+}
+
+.search-results-count {
+    font-size: 14px;
+    color: #666;
+}
+
+.search-results-count strong {
+    color: #009b63;
+    font-weight: 700;
+}
+
+.btn-clear-search {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid #e1e4e8;
+    background: #ffffff;
+    color: #666;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-clear-search:hover {
+    background: #f8f9fa;
+    border-color: #ef4444;
+    color: #ef4444;
+}
+
+.search-result-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.search-result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: #ffffff;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background 0.2s;
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-item:hover {
+    background: #f8f9fa;
+}
+
+.search-result-info {
+    flex: 1;
+}
+
+.search-result-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: #111;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.search-result-details {
+    font-size: 13px;
+    color: #666;
+}
+
+.btn-add-search {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    border: none;
+    background: #009b63;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-add-search:hover {
+    background: #007a4d;
+    transform: scale(1.1);
+}
+
+.empty-search-result {
+    padding: 40px 16px;
+    text-align: center;
+    color: #999;
+}
+
+/* ===== 현재 식단 ===== */
+.meal-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.meal-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border-radius: 8px;
+    background: #f8f9fa;
+    margin-bottom: 8px;
+}
+
+.meal-info {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.food-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: #111;
+}
+
+.food-kcal {
+    font-size: 13px;
+    color: #666;
+}
+
+.btn-remove {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    border: none;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-left: 12px;
+    transition: all 0.2s;
+}
+
+.btn-remove:hover {
+    background: #fee;
+}
+
+.btn-remove svg {
+    color: #ef4444;
+}
+
+.empty-meal {
+    text-align: center;
+    padding: 40px 0;
+    color: #999;
+}
+
+/* ===== 추천 식단 ===== */
+.recommend-section {
+    background: linear-gradient(135deg, #f5f0ff 0%, #faf5ff 100%);
+    border: 1px solid #e9d5ff;
+}
+
+.recommend-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.btn-refresh-recommend {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    border: none;
+    background: #a855f7;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-refresh-recommend:hover {
+    background: #9333ea;
+    transform: rotate(180deg);
+}
+
+.recommend-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.recommend-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border-radius: 8px;
+    background: #ffffff;
+    margin-bottom: 8px;
+    transition: all 0.2s;
+}
+
+.recommend-item:hover {
+    box-shadow: 0 2px 8px rgba(168, 85, 247, 0.15);
+}
+
+.recommend-info {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-add-recommend {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    border: none;
+    background: #a855f7;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-left: 12px;
+    transition: all 0.2s;
+}
+
+.btn-add-recommend:hover {
+    background: #9333ea;
+    transform: scale(1.1);
+}
+
+/* ===== 영양 분석 ===== */
+.nutrition-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.nutrition-card {
+    padding: 16px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nutrition-card.total {
+    background: linear-gradient(135deg, #a8e6cf 0%, #56ab91 100%);
+}
+
+.nutrition-card.carbs {
+    background: linear-gradient(135deg, #93c5fd 0%, #3b82f6 100%);
+}
+
+.nutrition-card.protein {
+    background: linear-gradient(135deg, #fca5a5 0%, #ef4444 100%);
+}
+
+.nutrition-card.fat {
+    background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 100%);
+}
+
+.card-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.card-value {
+    font-size: 20px;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+/* 차트 */
+.chart-container {
+    max-width: 300px;
+    margin: 0 auto 16px;
+}
+
+.chart-legend {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.legend-dot.carbs {
+    background: #3b82f6;
+}
+
+.legend-dot.protein {
+    background: #ef4444;
+}
+
+.legend-dot.fat {
+    background: #f59e0b;
+}
+
+.legend-label {
+    font-size: 13px;
+    color: #666;
+}
+
+/* ===== 하단 버튼 ===== */
+.edit-actions {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    border-top: none;
+    box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.08);
+    padding: 16px 20px;
+    display: flex;
+    gap: 12px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.btn-cancel {
+    flex: 1;
+    padding: 14px;
+    border-radius: 10px;
+    border: 1px solid #e1e4e8;
+    background: #ffffff;
+    color: #666;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-cancel:hover {
+    background: #f8f9fa;
+    border-color: #999;
+}
+
+.btn-complete {
+    flex: 2;
+    padding: 14px;
+    border-radius: 10px;
+    border: none;
+    background: #009b63;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-complete:hover {
+    background: #007a4d;
+}
+
+/* ===== 반응형 ===== */
+@media (max-width: 768px) {
+    .edit-container {
+        padding: 15px 15px 80px;
+    }
+
+    .nutrition-cards {
+        grid-template-columns: 1fr;
+    }
+}
