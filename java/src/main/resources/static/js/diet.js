@@ -496,7 +496,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ========================================
-    // 14. 상세 버튼 이벤트 (⭐ 이거 추가!)
+    // 14. 상세 버튼 이벤트
     // ========================================
     function attachMealDetailButtons() {
         document.querySelectorAll('.btn-meal-detail').forEach(btn => {
@@ -518,6 +518,144 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ========================================
+    // 16. 전체 식단 등록 버튼 이벤트
+    // ========================================
+    function attachRegisterAllButton() {
+        const registerBtn = document.getElementById('registerAllMealsBtn');
+        if (registerBtn) {
+            registerBtn.addEventListener('click', registerAllMeals);
+        }
+    }
+
+    // ========================================
+    // 17. 전체 식단 등록
+    // ========================================
+    async function registerAllMeals() {
+        if (!isUserLoggedIn) {
+            alert('로그인이 필요한 기능입니다.');
+            return;
+        }
+
+        // 확인 메시지
+        const confirmed = confirm(
+            '현재 오늘의 식단을 모두 삭제하고\n' +
+            'AI 추천 식단으로 등록하시겠습니까?'
+        );
+
+        if (!confirmed) {
+            return;
+        }
+
+        try {
+            await apiRequest('/api/diet/today/all', { method: 'DELETE' });
+
+            await apiRequest('/api/diet/recommend/daily?forceRegister=true', {
+                method: 'GET'
+            });
+
+            alert('AI 추천 식단이 등록되었습니다!');
+
+            await loadRecommendations();
+            await loadTodayMeals();
+            await loadTodayCalories();
+
+        } catch (error) {
+            console.error('식단 등록 중 오류 발생:', error);
+
+            let errorMessage = '식단 등록에 실패했습니다.';
+
+            if (error.status === 401) {
+              errorMessage = '로그인이 만료되었습니다. 다시 로그인해주세요.';
+            } else if (error.status === 404) {
+              errorMessage = 'AI 추천 식단을 찾을 수 없습니다.';
+            } else if (error.message) {
+              errorMessage += '\n' + error.message;
+            }
+
+            alert(errorMessage);
+        }
+    }
+
+    // ========================================
+    // 18. 기존 식단 모두 삭제
+    // ========================================
+    async function deleteAllTodayMeals() {
+        try {
+            const response = await apiRequest('/api/diet/today/all', {
+                method: 'DELETE'
+            });
+
+            console.log('✅ 기존 식단 삭제 완료:', response);
+
+        } catch (error) {
+            console.error('❌ 기존 식단 삭제 실패:', error);
+            throw error;
+        }
+    }
+
+    // ========================================
+    // 19. 추천 식단 저장
+    // ========================================
+    async function saveRecommendedMeals() {
+        try {
+            const recommendData = collectRecommendedMeals();
+
+            if (!recommendData || Object.keys(recommendData).length === 0) {
+                throw new Error('추천 식단 데이터가 없습니다.');
+            }
+
+            console.log('📤 추천 식단 저장 요청:', recommendData);
+
+            const response = await apiRequest('/api/diet/recommend/save', {
+                method: 'POST',
+                body: JSON.stringify(recommendData)
+            });
+
+            console.log('✅ 추천 식단 저장 완료:', response);
+
+        } catch (error) {
+            console.error('❌ 추천 식단 저장 실패:', error);
+            throw error;
+        }
+    }
+
+    // ========================================
+    // 20. 화면의 추천 식단 데이터 수집
+    // ========================================
+    function collectRecommendedMeals() {
+        const recommendCards = document.querySelectorAll('.recommend-card');
+        const result = {};
+
+        recommendCards.forEach(card => {
+            const mealType = card.getAttribute('data-meal-type');
+            if (!mealType) return;
+
+            const foods = [];
+            const foodItems = card.querySelectorAll('.recommend-list li');
+
+            foodItems.forEach(item => {
+                const foodName = item.querySelector('.food-name')?.textContent.trim();
+                const foodKcal = item.querySelector('.food-kcal')?.textContent;
+
+                if (foodName && foodKcal) {
+                    const calories = parseFloat(foodKcal.replace(/[^0-9.]/g, ''));
+
+                    foods.push({
+                        food_name: foodName,
+                        calories: calories
+                    });
+                }
+            });
+
+            if (foods.length > 0) {
+                result[mealType] = foods;
+            }
+        });
+
+        return result;
+    }
+
+    // ========================================
     // 초기화
     // ========================================
     async function init() {
@@ -528,6 +666,7 @@ document.addEventListener('DOMContentLoaded', function() {
         await loadTodayCalories();
         attachMealEditButtons();
         attachMealDetailButtons();
+        attachRegisterAllButton();
     }
 
     init();

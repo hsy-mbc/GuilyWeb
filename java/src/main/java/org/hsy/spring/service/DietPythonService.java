@@ -27,21 +27,16 @@ public class DietPythonService {
 
     public String generateDailyComment(int currentCalories, int targetCalories, String dietGoal) {
         try {
-            Map<String, Object> requestBody = Map.of(
-                    "currentCalories", currentCalories,
-                    "targetCalories", targetCalories,
-                    "dietGoal", dietGoal
-            );
+            String url = String.format("%s/comment?currentCalories=%d&targetCalories=%d&dietGoal=%s",
+                    PYTHON_SERVER_URL, currentCalories, targetCalories, dietGoal);
 
-            Map<String, String> response = restTemplate.postForObject(
-                    PYTHON_SERVER_URL + "/comment",
-                    requestBody,
-                    Map.class
-            );
+            Map<String, String> response = restTemplate.getForObject(url, Map.class);
 
+            System.out.println("Python 응답: " + response);
             return response != null ? response.get("comment") : getFallbackComment(currentCalories, targetCalories);
 
         } catch (Exception e) {
+            System.out.println("오류 발생: " + e.getMessage());
             return getFallbackComment(currentCalories, targetCalories);
         }
     }

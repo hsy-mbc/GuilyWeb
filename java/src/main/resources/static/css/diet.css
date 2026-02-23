@@ -281,16 +281,19 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+    gap: 16px;
 }
 
 .header-left {
     display: flex;
     align-items: center;
     gap: 8px;
+    flex: 1;
 }
 
 .header-left svg {
     color: #a855f7;
+    flex-shrink: 0;
 }
 
 .header-left h2 {
@@ -298,8 +301,42 @@
     font-weight: 700;
     color: #111;
     margin: 0;
+    white-space: nowrap;
 }
 
+.header-right {
+    display: flex;
+    gap: 8px;
+}
+
+/* 전체 식단 등록 버튼 */
+.btn-register-all {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: none;
+    background: #009b63;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.btn-register-all:hover {
+    background: #007a4d;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 155, 99, 0.3);
+}
+
+.btn-register-all:active {
+    transform: translateY(0);
+}
+
+/* 전체 새로고침 버튼 (기존 스타일 유지) */
 .btn-refresh-all {
     display: flex;
     align-items: center;
@@ -329,6 +366,45 @@
     padding: 4px 12px;
     border-radius: 12px;
     margin-left: 4px;
+}
+
+/* ===== 반응형 ===== */
+@media (max-width: 768px) {
+    .ai-recommend-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header-left {
+        width: 100%;
+    }
+
+    .header-right {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .btn-register-all,
+    .btn-refresh-all {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-left h2 {
+        font-size: 18px;
+    }
+
+    .ai-subtitle-badge {
+        display: none;
+    }
+
+    .btn-register-all,
+    .btn-refresh-all {
+        font-size: 13px;
+        padding: 8px 12px;
+    }
 }
 
 /* ===== 추천 그리드 ===== */
@@ -464,19 +540,6 @@
 @media (max-width: 768px) {
     .recommend-grid {
         grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 768px) {
-    .ai-recommend-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-    }
-
-    .btn-refresh-all {
-        width: 100%;
-        justify-content: center;
     }
 }
 

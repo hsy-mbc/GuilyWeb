@@ -13,11 +13,9 @@ class MealDetailModal {
     }
 
     init() {
-        // 닫기 버튼
         const closeBtn = document.getElementById('btnCloseModal');
         closeBtn.addEventListener('click', () => this.close());
 
-        // 배경 클릭 시 닫기
         this.overlay.addEventListener('click', (e) => {
             if (e.target === this.overlay) {
                 this.close();
@@ -91,22 +89,25 @@ class MealDetailModal {
         const nutrition = this.mealData.totalNutrition || {};
         const target = this.mealData.targetNutrition || {};
 
+        console.log('totalNutrition:', nutrition);
+        console.log('targetNutrition:', target);
+
         const items = [
-            { label: '칼로리', current: nutrition.calories || 0, target: target.calories || 700, unit: 'kcal' },
-            { label: '탄수화물', current: nutrition.carbs || 0, target: target.carbs || 87, unit: 'g' },
-            { label: '단백질', current: nutrition.protein || 0, target: target.protein || 33, unit: 'g' },
-            { label: '지방', current: nutrition.fat || 0, target: target.fat || 20, unit: 'g' },
-            { label: '식이섬유', current: nutrition.fiber || 0, target: target.fiber || 8, unit: 'g' },
-            { label: '당류', current: nutrition.sugar || 0, target: target.sugar || 17, unit: 'g' },
-            { label: '수분', current: nutrition.water || 0, target: target.water || 667, unit: 'ml' },
-            { label: '나트륨', current: nutrition.sodium || 0, target: target.sodium || 667, unit: 'mg' },
-            { label: '칼슘', current: nutrition.calcium || 0, target: target.calcium || 333, unit: 'mg' },
-            { label: '마그네슘', current: nutrition.magnesium || 0, target: target.magnesium || 117, unit: 'mg' },
-            { label: '철분', current: nutrition.iron || 0, target: target.iron || 4.7, unit: 'mg' },
-            { label: '칼륨', current: nutrition.potassium || 0, target: target.potassium || 1167, unit: 'mg' },
-            { label: '비타민 A', current: nutrition.vitaminA || 0, target: target.vitaminA || 267, unit: 'μg' },
-            { label: '비타민 C', current: nutrition.vitaminC || 0, target: target.vitaminC || 33, unit: 'mg' },
-            { label: '비타민 D', current: nutrition.vitaminD || 0, target: target.vitaminD || 3.3, unit: 'μg' }
+            { label: '칼로리', current: nutrition.calories || 0, target: target.calories || 0, unit: 'kcal' },
+            { label: '탄수화물', current: nutrition.carbs || 0, target: target.carbs || 0, unit: 'g' },
+            { label: '단백질', current: nutrition.protein || 0, target: target.protein || 0, unit: 'g' },
+            { label: '지방', current: nutrition.fat || 0, target: target.fat || 0, unit: 'g' },
+            { label: '식이섬유', current: nutrition.fiber || 0, target: target.fiber || 0, unit: 'g' },
+            { label: '당류', current: nutrition.sugar || 0, target: target.sugar || 0, unit: 'g' },
+            { label: '수분', current: nutrition.water || 0, target: target.water || 0, unit: 'ml' },
+            { label: '나트륨', current: nutrition.sodium || 0, target: target.sodium || 0, unit: 'mg' },
+            { label: '칼슘', current: nutrition.calcium || 0, target: target.calcium || 0, unit: 'mg' },
+            { label: '마그네슘', current: nutrition.magnesium || 0, target: target.magnesium || 0, unit: 'mg' },
+            { label: '철분', current: nutrition.iron || 0, target: target.iron || 0, unit: 'mg' },
+            { label: '칼륨', current: nutrition.potassium || 0, target: target.potassium || 0, unit: 'mg' },
+            { label: '비타민 A', current: nutrition.vitaminA || 0, target: target.vitaminA || 0, unit: 'μg' },
+            { label: '비타민 C', current: nutrition.vitaminC || 0, target: target.vitaminC || 0, unit: 'mg' },
+            { label: '비타민 D', current: nutrition.vitaminD || 0, target: target.vitaminD || 0, unit: 'μg' }
         ];
 
         grid.innerHTML = items.map(item => {

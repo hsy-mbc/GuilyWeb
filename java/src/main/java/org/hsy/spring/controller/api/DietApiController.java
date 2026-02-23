@@ -75,6 +75,7 @@ public class DietApiController {
     @GetMapping("/recommend/daily")
     public ResponseEntity<Map<String, Object>> getDailyRecommend(
             @AuthenticationPrincipal CustomUserDetails userDetails,
+            @RequestParam(required = false) Boolean forceRegister,
             @RequestParam(required = false) Integer targetCal) {
 
         Map<String, Object> recommendations;
@@ -84,7 +85,7 @@ public class DietApiController {
 
             List<DietLogEntity> todayLogs = dietService.getTodayDietLogs(userDetails.getUser().getUserNo());
 
-            if (todayLogs.isEmpty()) {
+            if (todayLogs.isEmpty() || Boolean.TRUE.equals(forceRegister)) {
                 dietService.saveRecommendedMeals(userDetails.getUser(), recommendations);
             }
 
@@ -194,6 +195,18 @@ public class DietApiController {
                 .toList();
 
         return ResponseEntity.ok(Map.of("foods", foodList));
+    }
+
+    @GetMapping("/today/all")
+    public ResponseEntity<List<DietLogResponseDTO>> getTodayAllDiets() {
+        List<DietLogResponseDTO> diets = dietService.getTodayAllDiets();
+        return ResponseEntity.ok(diets);
+    }
+
+    @DeleteMapping("/today/all")
+    public ResponseEntity<Map<String, String>> deleteTodayAllDiets() {
+        dietService.deleteTodayAllDiets();
+        return ResponseEntity.ok(Map.of("message", "삭제 완료"));
     }
 
 

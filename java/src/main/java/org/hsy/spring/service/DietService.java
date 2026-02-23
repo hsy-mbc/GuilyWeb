@@ -201,6 +201,7 @@ public class DietService {
         }
 
         String aiComment = generateAiComment(user, healthInfo);
+        System.out.println(aiComment);
 
         return GoalResponseDTO.builder()
                 .targetCalories(healthInfo.getTargetCalories())
@@ -336,17 +337,27 @@ public class DietService {
             FoodNutrientsEntity nutrients = foodNutrientsRepository.findById(food.getFoodNo()).orElse(null);
 
             if (nutrients != null) {
-                if (nutrients.getFiber() != null) totalFiber += nutrients.getFiber() * quantity;
+                if (nutrients.getFiber() != null) totalFiber += nutrients.getFiber() * quantity / 2.0;
                 if (nutrients.getSugar() != null) totalSugar += nutrients.getSugar() * quantity;
                 if (nutrients.getWater() != null) totalWater += nutrients.getWater() * quantity;
                 if (nutrients.getSodium() != null) totalSodium += nutrients.getSodium() * quantity;
                 if (nutrients.getCalcium() != null) totalCalcium += nutrients.getCalcium() * quantity;
-                if (nutrients.getMagnesium() != null) totalMagnesium += nutrients.getMagnesium() * quantity;
+                if (nutrients.getMagnesium() != null) totalMagnesium += nutrients.getMagnesium() * quantity / 10.0;
                 if (nutrients.getIron() != null) totalIron += nutrients.getIron() * quantity;
-                if (nutrients.getPotassium() != null) totalPotassium += nutrients.getPotassium() * quantity;
-                if (nutrients.getVitaminA() != null) totalVitaminA += nutrients.getVitaminA() * quantity;
-                if (nutrients.getVitaminC() != null) totalVitaminC += nutrients.getVitaminC() * quantity;
-                if (nutrients.getVitaminD() != null) totalVitaminD += nutrients.getVitaminD() * quantity;
+                if (nutrients.getPotassium() != null) totalPotassium += nutrients.getPotassium() * quantity / 10.0;
+                if (nutrients.getVitaminA() != null) {
+                    double vitaminA_IU = nutrients.getVitaminA();
+                    double vitaminA_RAE = vitaminA_IU / 12.0;
+                    totalVitaminA += vitaminA_RAE * quantity;
+                }
+                if (nutrients.getVitaminC() != null) {
+                    totalVitaminC += nutrients.getVitaminC() * quantity / 10.0;
+                }
+                if (nutrients.getVitaminD() != null) {
+                    double vitaminD_IU = nutrients.getVitaminD();
+                    double vitaminD_mcg = vitaminD_IU / 40.0;
+                    totalVitaminD += vitaminD_mcg * quantity;
+                }
             }
         }
 
@@ -397,6 +408,23 @@ public class DietService {
     @Transactional(readOnly = true)
     public List<FoodInfoEntity> searchByName(String query, int limit) {
         return foodInfoRepository.findByFoodNameContainingOrderByCaloriesDesc(query, PageRequest.of(0, limit));
+    }
+
+    public List<DietLogResponseDTO> getTodayAllDiets() {
+        LocalDate today = LocalDate.now();
+
+        List<DietLogEntity> diets = dietLogRepository.findAllByEatDate(today);
+
+        return diets.stream()
+                .map(DietLogResponseDTO::from)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public void deleteTodayAllDiets() {
+        LocalDate today = LocalDate.now();
+
+        dietLogRepository.deleteAllByEatDate(today);
     }
 
 

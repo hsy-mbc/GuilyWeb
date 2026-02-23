@@ -18,9 +18,9 @@ public class NutritionTargetService {
 
         // 끼니별 칼로리 비율 (아침 30% : 점심 40% : 저녁 30%)
         double mealCalories = switch (mealType.toUpperCase()) {
-            case "BREAKFAST" -> dailyCalories * 0.30;
+            case "BREAKFAST" -> dailyCalories * 0.25;
             case "LUNCH" -> dailyCalories * 0.40;
-            case "DINNER" -> dailyCalories * 0.30;
+            case "DINNER" -> dailyCalories * 0.35;
             default -> dailyCalories / 3.0;
         };
 
@@ -32,9 +32,9 @@ public class NutritionTargetService {
                 healthInfo.getActivityCoefficient()
         );
         double mealProtein = switch (mealType.toUpperCase()) {
-            case "BREAKFAST" -> dailyProtein * 0.30;
+            case "BREAKFAST" -> dailyProtein * 0.25;
             case "LUNCH" -> dailyProtein * 0.40;
-            case "DINNER" -> dailyProtein * 0.30;
+            case "DINNER" -> dailyProtein * 0.35;
             default -> dailyProtein / 3.0;
         };
 
@@ -42,9 +42,9 @@ public class NutritionTargetService {
 
         // 기타 영양소 (끼니별 비율 적용)
         double mealRatio = switch (mealType.toUpperCase()) {
-            case "BREAKFAST" -> 0.30;
+            case "BREAKFAST" -> 0.25;
             case "LUNCH" -> 0.40;
-            case "DINNER" -> 0.30;
+            case "DINNER" -> 0.35;
             default -> 1.0 / 3.0;
         };
 
