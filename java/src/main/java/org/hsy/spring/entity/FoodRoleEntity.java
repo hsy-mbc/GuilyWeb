@@ -11,16 +11,18 @@ public class FoodRoleEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long roleId;
+    private Long id;
 
-    @Column(nullable = false, unique = true)
-    private String roleName;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "food_no", nullable = false)
+    private FoodInfoEntity food;
 
-    private String description;
+    @Column(nullable = false)
+    private String role;
 
     @Builder
-    public FoodRoleEntity(String roleName, String description) {
-        this.roleName = roleName;
-        this.description = description;
+    public FoodRoleEntity(FoodInfoEntity food, String role) {
+        this.food = food;
+        this.role = role;
     }
 }

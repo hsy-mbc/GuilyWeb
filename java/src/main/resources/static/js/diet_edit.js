@@ -237,7 +237,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     foodNo: parseInt(foodNo),
                     mealType: currentMealType.toUpperCase(),
                     quantity: 1.0,
-                    eatDate: new Date().toISOString().split('T')[0]
+                    eatDate: new Date().toLocaleDateString('ko-KR', {
+                        year: 'numeric', month: '2-digit', day: '2-digit'
+                    }).replace(/\./g, '').replace(/\s/g, '-').trim()
                 })
             });
 
