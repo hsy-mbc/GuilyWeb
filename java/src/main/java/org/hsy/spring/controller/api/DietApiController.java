@@ -2,7 +2,6 @@ package org.hsy.spring.controller.api;
 
 import lombok.RequiredArgsConstructor;
 import org.hsy.spring.dto.*;
-import org.hsy.spring.entity.DietLogEntity;
 import org.hsy.spring.entity.FoodInfoEntity;
 import org.hsy.spring.security.CustomUserDetails;
 import org.hsy.spring.service.DietPythonService;
@@ -75,20 +74,12 @@ public class DietApiController {
     @GetMapping("/recommend/daily")
     public ResponseEntity<Map<String, Object>> getDailyRecommend(
             @AuthenticationPrincipal CustomUserDetails userDetails,
-            @RequestParam(required = false) Boolean forceRegister,
             @RequestParam(required = false) Integer targetCal) {
 
         Map<String, Object> recommendations;
 
         if (userDetails != null && userDetails.getUser() != null) {
             recommendations = dietPythonService.getDailyPlan(userDetails.getUser().getUserNo(), null);
-
-            List<DietLogEntity> todayLogs = dietService.getTodayDietLogs(userDetails.getUser().getUserNo());
-
-            if (todayLogs.isEmpty() || Boolean.TRUE.equals(forceRegister)) {
-                dietService.saveRecommendedMeals(userDetails.getUser(), recommendations);
-            }
-
         } else {
             recommendations = dietPythonService.getDailyPlan(null, targetCal);
         }
@@ -106,6 +97,23 @@ public class DietApiController {
             return ResponseEntity.ok(dietPythonService.getSingleMeal(mealType, userDetails.getUser().getUserNo(), null));
         } else {
             return ResponseEntity.ok(dietPythonService.getSingleMeal(mealType, null, targetCal));
+        }
+    }
+
+    @PostMapping("/recommend/save")
+    public ResponseEntity<Map<String, Object>> saveRecommendedMeals(
+            @AuthenticationPrincipal CustomUserDetails userDetails,
+            @RequestBody Map<String, Object> currentRecommendations) {
+
+        if (userDetails == null || userDetails.getUser() == null) {
+            return ResponseEntity.status(401).body(Map.of("status", "error", "message", "로그인이 필요합니다."));
+        }
+
+        try {
+            dietService.saveRecommendedMeals(userDetails.getUser(), currentRecommendations);
+            return ResponseEntity.ok(Map.of("status", "success"));
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(Map.of("status", "error", "message", e.getMessage()));
         }
     }
 

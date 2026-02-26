@@ -13,14 +13,15 @@ recommender = Recommender()
 
 # 하루 전체 추천 (페이지 로드용)
 @app.get("/ai/recommend/daily")
-async def get_daily_recommend(user_no: int = None, targetCal: int = None):
-    result = recommender.recommend_daily(user_no=user_no, guest_cal=targetCal)
+async def get_daily_recommend(user_no: int = None, guest_cal: int = None):
+    result = recommender.recommend_daily(user_no=user_no, guest_cal=guest_cal)
+    print(f"user_no={user_no}, targetCal={guest_cal}")
     return {"status": "success", "data": result}
 
 # 한 끼 단일 추천 (새로고침용)
 @app.get("/ai/recommend/single")
-async def get_single_refresh(meal_type: str, user_no: int = None, targetCal: int = None):
-    result = recommender.recommend_single(meal_type, {}, user_no, targetCal)
+async def get_single_refresh(meal_type: str, user_no: int = None, guest_cal: int = None):
+    result = recommender.recommend_single(meal_type, {}, user_no, guest_cal)
     return {"status": "success", "data": result}
 
 # ai 코멘트

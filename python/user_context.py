@@ -119,19 +119,19 @@ class UserContext:
         return recent
 
     def _fetch_recent_recommended(self) -> set:
-        """최근 3일 내 추천된 음식 food_no 집합"""
+        """최근 3시간 내 추천된 음식 food_no 집합"""
         rows = db.fetch_all(
             """
             SELECT food_no FROM user_food_interaction
             WHERE user_no = %s
-              AND last_recommended_at >= DATE_SUB(NOW(), INTERVAL 3 DAY)
+              AND last_recommended_at >= DATE_SUB(NOW(), INTERVAL 3 HOUR)
             """,
             (self.user_no,)
         )
         return {row['food_no'] for row in rows} if rows else set()
 
     def get_penalty_score(self, food_no: int) -> float:
-        # 오늘 추천된 음식은 완전 제외
+        # 3시간 이내 추천된 음식 제외
         if food_no in self.recent_recommended:
             return -9999
 

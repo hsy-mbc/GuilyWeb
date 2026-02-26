@@ -45,11 +45,13 @@ class FoodSelector:
         sodium_score  = max(0, 100 - (sodium / 2000) * 100)
 
         if role == 'MAIN':
-            score = cal_proximity * 0.40 + pro_den * 1000 * 0.40 + preference * 0.20
+            pro_den_capped = min(pro_den, 0.04) / 0.04 * 100
+            score = cal_proximity * 0.40 + pro_den_capped * 0.30 + nut_score * 0.10 + preference * 0.20
         elif role == 'MAIN_CARB':
             score = cal_proximity * 0.50 + nut_score * 0.30 + preference * 0.20
         elif role == 'MAIN_SOUP':
-            score = cal_proximity * 0.40 + pro_den * 1000 * 0.30 + nut_score * 0.10 + preference * 0.20
+            pro_den_capped = min(pro_den, 0.04) / 0.04 * 100
+            score = cal_proximity * 0.40 + pro_den_capped * 0.30 + nut_score * 0.10 + preference * 0.20
         elif role == 'SUB_CARB':
             score = cal_proximity * 0.30 + nut_score * 0.50 + preference * 0.20
         elif role == 'SUB_SOUP':

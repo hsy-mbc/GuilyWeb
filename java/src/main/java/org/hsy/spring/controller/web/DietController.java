@@ -63,7 +63,7 @@ public class DietController {
             model.addAttribute("isMember", false);
         }
 
-        return "/diet";
+        return "diet";
     }
 
     @GetMapping("/diet-entry")

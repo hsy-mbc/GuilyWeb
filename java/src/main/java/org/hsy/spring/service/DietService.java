@@ -343,7 +343,7 @@ public class DietService {
                 if (nutrients.getSodium() != null) totalSodium += nutrients.getSodium() * quantity;
                 if (nutrients.getCalcium() != null) totalCalcium += nutrients.getCalcium() * quantity;
                 if (nutrients.getMagnesium() != null) totalMagnesium += nutrients.getMagnesium() * quantity / 10.0;
-                if (nutrients.getIron() != null) totalIron += nutrients.getIron() * quantity;
+                if (nutrients.getIron() != null) totalIron += nutrients.getIron() * quantity / 10.0;
                 if (nutrients.getPotassium() != null) totalPotassium += nutrients.getPotassium() * quantity / 10.0;
                 if (nutrients.getVitaminA() != null) {
                     double vitaminA_IU = nutrients.getVitaminA();

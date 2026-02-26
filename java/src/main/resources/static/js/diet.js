@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let isUserLoggedIn = false;
     let goalData = null;
     let calorieData = null;
+    let currentRecommendations = null;
 
     // ========================================
     // 1. 로그인 상태 확인
@@ -229,6 +230,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('📥 추천 응답:', response);
 
             if (response && response.status === 'success' && response.data) {
+                currentRecommendations = response;
                 displayRecommendations(response.data);
             }
 
@@ -549,8 +551,9 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             await apiRequest('/api/diet/today/all', { method: 'DELETE' });
 
-            await apiRequest('/api/diet/recommend/daily?forceRegister=true', {
-                method: 'GET'
+            await apiRequest('/api/diet/recommend/save', {
+                method: 'POST',
+                body: JSON.stringify(currentRecommendations)
             });
 
             alert('AI 추천 식단이 등록되었습니다!');
@@ -656,19 +659,66 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ========================================
+    // 로딩 중 스켈레톤
+    // ========================================
+
+    function showSkeletons() {
+        ['breakfast', 'lunch', 'dinner'].forEach(mealType => {
+            const mealCard = document.querySelector(`.meal-card[data-meal="${mealType}"]`);
+            if (!mealCard) return;
+
+            const mealList = mealCard.querySelector('.meal-list');
+            const totalKcal = mealCard.querySelector('.total-kcal');
+
+            if (mealList) {
+                mealList.innerHTML = ['', '', ''].map(() => `
+                    <li class="skeleton-item">
+                        <span class="skeleton-line"></span>
+                        <span class="skeleton-line short"></span>
+                    </li>
+                `).join('');
+            }
+
+            if (totalKcal) {
+                totalKcal.innerHTML = '<span class="skeleton-line short"></span>';
+            }
+        });
+        const grid = document.querySelector('.recommend-grid');
+        if (grid) {
+            grid.innerHTML = ['', '', ''].map(() => `
+                <div class="recommend-card skeleton">
+                    <div class="skeleton-title"></div>
+                    <div class="skeleton-line"></div>
+                    <div class="skeleton-line"></div>
+                    <div class="skeleton-line"></div>
+                    <div class="skeleton-line short"></div>
+                </div>
+            `).join('');
+        }
+    }
+
+    // ========================================
     // 초기화
     // ========================================
     async function init() {
+        showSkeletons();
         await checkLoginStatus();
         await loadGoalInfo();
-        await loadRecommendations();
-        await loadTodayMeals();
-        await loadTodayCalories();
+
+        await Promise.all([
+            loadRecommendations(),
+            loadTodayMeals(),
+            loadTodayCalories()
+        ]);
+
         attachMealEditButtons();
         attachMealDetailButtons();
         attachRegisterAllButton();
     }
 
     init();
+
+    window.loadTodayMeals = loadTodayMeals;
+    window.loadTodayCalories = loadTodayCalories;
 
 });

@@ -216,19 +216,15 @@ class MealDetailModal {
                 method: 'DELETE'
             });
 
-            alert('삭제되었습니다!');
-
             // 모달 새로고침
             await this.loadMealData();
             this.render();
 
             // 메인 페이지 새로고침
-            if (window.loadTodayMeals) {
-                window.loadTodayMeals();
-            }
-            if (window.loadTodayCalories) {
-                window.loadTodayCalories();
-            }
+            await Promise.all([
+                window.loadTodayMeals?.(),
+                window.loadTodayCalories?.()
+            ]);
 
         } catch (error) {
             console.error('삭제 실패:', error);

@@ -1,5 +1,6 @@
 from user_context import UserContext
 from mealPlanner import MealPlanner
+import random
 
 
 def _format_food(food: dict) -> dict:
@@ -26,11 +27,12 @@ class GuestContext:
     """비로그인 사용자용 컨텍스트 - targetCal만 받아서 기본 영양소 계산"""
     def __init__(self, guest_cal: int):
         cal = guest_cal or 2000
+        randomized_cal = cal * random.uniform(0.9, 1.1)
         self.required_nutrients = {
-            'calories': cal,
-            'protein':  round((cal * 0.25) / 4, 1),
-            'carbs':    round((cal * 0.50) / 4, 1),
-            'fat':      round((cal * 0.25) / 9, 1),
+            'calories': randomized_cal,
+            'protein':  round((randomized_cal * 0.25) / 4, 1),
+            'carbs':    round((randomized_cal * 0.50) / 4, 1),
+            'fat':      round((randomized_cal * 0.25) / 9, 1),
         }
         self.interaction_scores = {}
         self.recent_food_nos = {}
