@@ -26,7 +26,7 @@
             <!-- 2. 로그인한 경우 (User) -->
             <div class="user-info" sec:authorize="isAuthenticated()">
                 <!-- CustomUserDetails에서 실제 이름을 가져옴 -->
-                <a th:href="@{/#}" class="profile-link">
+                <a th:href="@{/profile}" class="profile-link">
                     <span sec:authentication="principal.name">사용자</span>님 환영합니다
                 </a>
 
